@@ -1,0 +1,2 @@
+class Lock < ApplicationRecord
+end

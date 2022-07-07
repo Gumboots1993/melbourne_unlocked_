@@ -1,0 +1,2 @@
+class LocksController < ApplicationController
+end

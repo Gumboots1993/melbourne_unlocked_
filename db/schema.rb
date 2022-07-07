@@ -10,10 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_07_07_093617) do
+ActiveRecord::Schema.define(version: 2022_07_07_103724) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "locks", force: :cascade do |t|
+    t.text "address"
+    t.text "description"
+    t.text "image"
+    t.text "special_content"
+    t.text "lock_type"
+    t.string "name"
+    t.boolean "status"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -23,8 +35,22 @@ ActiveRecord::Schema.define(version: 2022_07_07_093617) do
     t.datetime "remember_created_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "username"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "visits", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "lock_id", null: false
+    t.text "photo"
+    t.datetime "unlocked_date"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["lock_id"], name: "index_visits_on_lock_id"
+    t.index ["user_id"], name: "index_visits_on_user_id"
+  end
+
+  add_foreign_key "visits", "locks"
+  add_foreign_key "visits", "users"
 end
