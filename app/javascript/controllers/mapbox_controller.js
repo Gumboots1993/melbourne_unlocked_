@@ -37,7 +37,7 @@ export default class extends Controller {
         alert("Geolocation is not supported in this browser.");
       } else {
         // 🚀 get user's currnt position
-        navigator.geolocation.getCurrentPosition(
+        navigator.geolocation.watchPosition(
           // 💚 success callback, mandatory
           (position) => {
             // target the element containing the location data
