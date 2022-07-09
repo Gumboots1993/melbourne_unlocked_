@@ -5,6 +5,7 @@ class PagesController < ApplicationController
   end
 
   def profile
+    @visits = Visit.all
     @user = current_user
   end
 
@@ -13,5 +14,6 @@ class PagesController < ApplicationController
 
   def leaderboard
   end
+
 
 end
