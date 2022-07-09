@@ -62,9 +62,9 @@ export default class extends Controller {
           const customMarker = document.createElement("div")
           customMarker.className = "marker"
           if (distance > 0.6) {
-            customMarker.style.backgroundImage = `url('/assets/locked.svg')`
+            customMarker.style.backgroundImage = `url('https://media-cldnry.s-nbcnews.com/image/upload/newscms/2016_14/1038581/red-dot-puzzle-before-today-160406.jpg')`
           } else {
-            customMarker.style.backgroundImage = `url('/assets/unlocked.svg')`
+            customMarker.style.backgroundImage = `url('https://miro.medium.com/max/1024/1*nZ9VwHTLxAfNCuCjYAkajg.png')`
           }
           customMarker.style.backgroundSize = "cover"
           customMarker.style.width = "25px"
