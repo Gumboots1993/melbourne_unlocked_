@@ -32,6 +32,10 @@ export default class extends Controller {
   }
 
   _addMarkersToMap() {
+    var removeMarkers = document.querySelectorAll('.marker')
+          removeMarkers.forEach(marker => {
+            marker.remove();
+          });
     this.markersValue.forEach((marker) => {
       if (!navigator.geolocation) {
         alert("Geolocation is not supported in this browser.");
