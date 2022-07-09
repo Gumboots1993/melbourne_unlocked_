@@ -7,9 +7,14 @@
   flex-grow: 0;
 }
 
-.footer {
-  position: sticky;
-  top: 100vh;
+.bottom_navbar-lewagon {
+  position: fixed;
+  z-index: 100;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 70px;
+  background-color: white;
 }
 
 .footer .container-fluid a {
