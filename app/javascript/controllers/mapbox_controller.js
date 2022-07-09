@@ -32,33 +32,30 @@ export default class extends Controller {
   }
 
   _addMarkersToMap() {
-    var removeMarkers = document.querySelectorAll('.marker')
-          removeMarkers.forEach(marker => {
-            marker.remove();
-          });
-    this.markersValue.forEach((marker) => {
-      if (!navigator.geolocation) {
-        alert("Geolocation is not supported in this browser.");
-      } else {
-        // 🚀 get user's currnt position
-        navigator.geolocation.watchPosition(
-          // 💚 success callback, mandatory
-          (position) => {
-            // target the element containing the location data
-            // var el = document.querySelector('.span');
-            // get the data from the attribute
-            // var long = el.getAttribute('data-lon')
-            // var lat = el.getAttribute('data-lat')
-            // set points
-            var from = turf.point([position.coords.latitude, position.coords.longitude]);
-            var to = turf.point([marker.lat, marker.lng]);
-            //set option for turf calc
-            var options = {units: "kilometers"};
-            // turf distance calculation
-            var distance = turf.distance(from, to, options);
-
-            console.log(distance);
-            const popup = new mapboxgl.Popup().setHTML(marker.info_window)
+    if (!navigator.geolocation) {
+      alert("Geolocation is not supported in this browser.");
+    } else {
+      // 🚀 get user's currnt position
+     navigator.geolocation.watchPosition(
+      // 💚 success callback, mandatory
+      (position) => {
+        const removeMarkers = document.querySelectorAll("div.marker")
+        removeMarkers.forEach((marker => { marker.remove();}));
+        this.markersValue.forEach((marker) => {
+          // target the element containing the location data
+        // var el = document.querySelector('.span');
+        // get the data from the attribute
+        // var long = el.getAttribute('data-lon')
+        // var lat = el.getAttribute('data-lat')
+        // set points
+        var from = turf.point([position.coords.latitude, position.coords.longitude]);
+        var to = turf.point([marker.lat, marker.lng]);
+        //set option for turf calc
+        var options = {units: "kilometers"};
+        // turf distance calculation
+        var distance = turf.distance(from, to, options);
+        console.log(distance);
+          const popup = new mapboxgl.Popup().setHTML(marker.info_window)
           // const customPopup = document.createElement("div")
           // customPopup.className = "popupp"
           // popupp.style.borderRadius = "5%"
@@ -80,17 +77,15 @@ export default class extends Controller {
             .setLngLat([ marker.lng, marker.lat ])
             .setPopup(popup)
             .addTo(this.map)
-          },
-          // 🚨 error callback, optional
-          (error) => {
-            // display error
-            console.log(error);
-          },
-        );
-
-
-      }
-    });
+        });
+      },
+      // 🚨 error callback, optional
+      (error) => {
+        // display error
+        console.log(error);
+      },
+    );
+    }
   }
 
   _fitMapToMarkers() {
