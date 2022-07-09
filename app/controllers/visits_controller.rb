@@ -1,7 +1,7 @@
 class VisitsController < ApplicationController
 
   def create
-    @visit = Buddy.new
+    @visit = Visits.new
     @visit.user = current_user
     if @visit.save
       redirect_to visit_path(@visit)
