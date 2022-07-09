@@ -1,0 +1,20 @@
+.profile_banner {
+  background-color: $unlocked-light;
+  color: $white;
+  text-align: center;
+}
+
+.profile_banner img {
+  width: 200px;
+  height: 200px;
+  border-radius: 100%;
+  object-fit: cover;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 10px;
+}
+
+.profile_banner h1 {
+  color: $white;
+}

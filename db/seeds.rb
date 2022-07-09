@@ -11,8 +11,8 @@ Visit.destroy_all
 Review.destroy_all
 
 
-user = User.create!(email: "beth@gmail.com", password: "password", username: "bethrox4eva", photo: "beth.jpg")
-user2 = User.create!(email: "moo@gmail.com", password: "password", username: "moorox4eva", photo: "raggy.png" )
+user = User.create!(email: "beth@gmail.com", password: "password", username: "bethrox4eva", photo: "https://live.staticflickr.com/7581/15927731828_149cb4acee_b.jpg")
+user2 = User.create!(email: "moo@gmail.com", password: "password", username: "moorox4eva", photo: "https://live.staticflickr.com/7581/15927731828_149cb4acee_b.jpg" )
 street = ["Flinders St VIC 3000", "Collins St VIC 3000", "La Trobe Street VIC 3000", "Lonsdale St VIC 3000"]
 
 4.times do
