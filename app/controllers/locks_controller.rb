@@ -1,11 +1,11 @@
 class LocksController < ApplicationController
-
   def index
     @locks = Lock.all
     @markers = @locks.geocoded.map do |lock|
       {
         lat: lock.latitude,
-        lng: lock.longitude
+        lng: lock.longitude,
+        info_window: render_to_string(partial: "info_window", locals: { lock: lock })
       }
     end
   end
