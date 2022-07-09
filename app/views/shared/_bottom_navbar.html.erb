@@ -1,10 +1,10 @@
 <div class="px-3 border-top navbar navbar-expand-sm navbar-light navbar-lewagon">
   <div class="container-fluid">
     <a href="#"><i class="fas fa-search"></i></a>
-    <a href="#"><i class="fas fa-home"></i></a>
+    <a href="<%root_path%>"><i class="fas fa-home"></i></a>
     <a href="#"><i class="fas fa-trophy"></i></a>
     <% if user_signed_in? %>
-    <%= link_to image_tag('raggy.png', class: "avatar") , profile_path(current_user.username) %>
+    <%= link_to image_tag(current_user.photo, class: "avatar") , profile_path(current_user.username) %>
     <% else %>
     <a href="<%new_user_session_path%>"><i class="fas fa-user"></i></a>
     <% end %>
