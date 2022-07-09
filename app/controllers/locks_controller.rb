@@ -2,6 +2,12 @@ class LocksController < ApplicationController
 
   def index
     @locks = Lock.all
+    @markers = @locks.geocoded.map do |lock|
+      {
+        lat: lock.latitude,
+        lng: lock.longitude
+      }
+    end
   end
 
   def show
