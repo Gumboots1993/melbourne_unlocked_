@@ -1,8 +1,14 @@
 <div class="px-3 border-top navbar navbar-expand-sm navbar-light navbar-lewagon">
   <div class="container-fluid">
-    <a href="#"><i class="fas fa-search"></i></a>
-    <a href="<%root_path%>"><i class="fas fa-home"></i></a>
-    <a href="#"><i class="fas fa-trophy"></i></a>
+    <%= link_to root_path do %>
+     <i class="fas fa-search"></i>
+    <% end %>
+    <%= link_to root_path do %>
+      <i class="fas fa-home"></i>
+    <% end %>
+        <%= link_to root_path do %>
+     <i class="fas fa-trophy"></i>
+    <% end %>
     <% if user_signed_in? %>
     <%= link_to image_tag(current_user.photo, class: "avatar") , profile_path(current_user.username) %>
     <% else %>
