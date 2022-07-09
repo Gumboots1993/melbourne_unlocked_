@@ -3,3 +3,7 @@
         <img src=<%= @user.photo %>>
         <h1><%= @user.username %>'s Profile Page</h1>
   </div>
+  <h1>these are you unlocked locks!</h1>
+<% @visits.each do |visit| %>
+<p> <strong>unlocked date: </strong> <%= visit.unlocked_date %> </p>
+          <% end %>
