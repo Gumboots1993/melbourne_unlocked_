@@ -20,7 +20,7 @@ class LocksController < ApplicationController
 
   def create
     @lock = Lock.new(lock_params)
-    @lock.user = current_user
+    # @lock.user = current_user
     if @lock.save
       redirect_to lock_path(@lock)
     else
