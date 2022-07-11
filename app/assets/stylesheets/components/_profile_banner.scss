@@ -2,19 +2,37 @@
   background-color: $unlocked-light;
   color: $white;
   text-align: center;
+  padding: 15px;
+}
+
+.mini_banner {
+  background-color: $unlocked-dark;
+  color: $white;
+  background-size: cover;
+  background-position: center;
+  text-align: center;
+  padding: 20px;
+}
+
+.mini_banner svg {
+  width: 60px;
+  height: 60px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .profile_banner img {
-  width: 200px;
-  height: 200px;
+  width: 120px;
+  height: 120px;
   border-radius: 100%;
   object-fit: cover;
   display: block;
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 10px;
+  border: 5px solid $white;
 }
 
 .profile_banner h1 {
-  color: $white;
+  color: $unlocked_dark;
 }
