@@ -5,8 +5,9 @@ class PagesController < ApplicationController
   end
 
   def profile
-    @visits = Visit.all
     @user = current_user
+    @user_visits = @user.visits
+    @locks = Lock.all
   end
 
   def show

@@ -1,0 +1,12 @@
+.card {
+  flex-direction: row;
+}
+
+.card img {
+  object-fit: cover;
+  border-radius: 100%;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-right: 10px;
+  margin-left: 20px;
+}
