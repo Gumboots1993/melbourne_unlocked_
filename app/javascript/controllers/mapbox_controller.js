@@ -16,12 +16,12 @@ export default class extends Controller {
     })
     this._addMarkersToMap()
     this._fitMapToMarkers()
-
     this.map.addControl(new mapboxgl.NavigationControl());
     this.map.addControl(
       new mapboxgl.GeolocateControl({
       positionOptions: {
-      enableHighAccuracy: true
+      enableHighAccuracy: true,
+      maximumAge: Infinity
       },
       // When active the map will receive updates to the device's location as it changes.
       trackUserLocation: true,
@@ -32,9 +32,8 @@ export default class extends Controller {
   }
 
   _addMarkersToMap() {
-    if (!navigator.geolocation) {
-      alert("Geolocation is not supported in this browser.");
-    } else {
+
+    let options = {};
       // 🚀 get user's currnt position
      navigator.geolocation.watchPosition(
       // 💚 success callback, mandatory
@@ -42,11 +41,6 @@ export default class extends Controller {
         const removeMarkers = document.querySelectorAll("div.marker")
         removeMarkers.forEach((marker => { marker.remove();}));
         this.markersValue.forEach((marker) => {
-          // target the element containing the location data
-        // var el = document.querySelector('.span');
-        // get the data from the attribute
-        // var long = el.getAttribute('data-lon')
-        // var lat = el.getAttribute('data-lat')
         // set points
         var from = turf.point([position.coords.latitude, position.coords.longitude]);
         var to = turf.point([marker.lat, marker.lng]);
@@ -55,11 +49,13 @@ export default class extends Controller {
         // turf distance calculation
         var distance = turf.distance(from, to, options);
         console.log(distance);
-          const popup = new mapboxgl.Popup().setHTML(marker.info_window)
+          const popup = new mapboxgl.Popup({anchor: 'center'})
+            .setHTML(marker.info_window)
+            .setLngLat([ marker.lng, marker.lat ])
+            .setMaxWidth('50');
           // const customPopup = document.createElement("div")
           // customPopup.className = "popupp"
           // popupp.style.borderRadius = "5%"
-
           const customMarker = document.createElement("div")
           customMarker.className = "marker"
           if (marker.image_url != "") {
@@ -75,11 +71,13 @@ export default class extends Controller {
           customMarker.style.height = "25px"
           customMarker.style.borderRadius = "50%"
           customMarker.style.cursor = "pointer"
-
           new mapboxgl.Marker(customMarker)
             .setLngLat([ marker.lng, marker.lat ])
             .setPopup(popup)
             .addTo(this.map)
+          popup.on('open', () => {
+            this.map.flyTo({center: [ marker.lng, marker.lat ], zoom: 15});;
+            });
         });
       },
       // 🚨 error callback, optional
@@ -87,8 +85,11 @@ export default class extends Controller {
         // display error
         console.log(error);
       },
+      options = {
+        maximumAge: Infinity
+      }
     );
-    }
+
   }
 
   _fitMapToMarkers() {
