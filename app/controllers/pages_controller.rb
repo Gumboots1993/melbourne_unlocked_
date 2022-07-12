@@ -14,6 +14,8 @@ class PagesController < ApplicationController
   end
 
   def leaderboard
+    @users = User.all
+    @locks = Lock.all
   end
 
 

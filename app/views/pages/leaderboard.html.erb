@@ -1,0 +1,18 @@
+<div class="container">
+  <h1> Who has unlocked the most treasures?</h1>
+  <div class="cards">
+  <% @users.sort.each do |user| %>
+  <div class="card mb-3">
+    <div class="section">
+    <img src= <%= user.photo %> alt="" width="50px;" height="50px;">
+    </div>
+    <div class="section">
+      <h2><%= user.username %></h2>
+      <p><strong> <i class="fas fa-trophy"></i>  Total Unlocked: </strong> <%= user.visits.count %> /
+    <%= @locks.count %> </p>
+</div>
+    </div>
+  </div>
+<% end %>
+</div>
+</div>
