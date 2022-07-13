@@ -40,9 +40,9 @@ export default class extends Controller {
      navigator.geolocation.watchPosition(
       // 💚 success callback, mandatory
       (position) => {
-        const removeMarkers = document.querySelectorAll("div.marker")
-        removeMarkers.forEach((marker => { marker.remove();}));
-        console.log('markers removed')
+        // const removeMarkers = document.querySelectorAll("div.marker")
+        // removeMarkers.forEach((marker => { marker.remove();}));
+        // console.log('markers removed')
         this.markersValue.forEach((marker) => {
         // set points
         var from = turf.point([position.coords.latitude, position.coords.longitude]);
