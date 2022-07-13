@@ -40,9 +40,9 @@ export default class extends Controller {
      navigator.geolocation.watchPosition(
       // 💚 success callback, mandatory
       (position) => {
-        // const removeMarkers = document.querySelectorAll("div.marker")
-        // removeMarkers.forEach((marker => { marker.remove();}));
-        // console.log('markers removed')
+        const removeMarkers = document.querySelectorAll("div.marker")
+        removeMarkers.forEach((marker => { marker.remove();}));
+        console.log('markers removed')
         this.markersValue.forEach((marker) => {
         // set points
         var from = turf.point([position.coords.latitude, position.coords.longitude]);
@@ -78,10 +78,12 @@ export default class extends Controller {
             .setLngLat([ marker.lng, marker.lat ])
             .setPopup(popup)
             .addTo(this.map)
+          console.log("markers created")
           popup.on('open', () => {
             this.map.flyTo({center: [ marker.lng, marker.lat ], zoom: 15});;
             });
         });
+
       },
       // 🚨 error callback, optional
       (error) => {
