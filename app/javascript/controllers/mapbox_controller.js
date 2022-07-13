@@ -40,7 +40,7 @@ export default class extends Controller {
      navigator.geolocation.watchPosition(
       // 💚 success callback, mandatory
       (position) => {
-        const removeMarkers = document.querySelectorAll("div.marker")
+        var removeMarkers = document.querySelectorAll("div.marker")
         removeMarkers.forEach((marker => { marker.remove();}));
         console.log('markers removed')
         this.markersValue.forEach((marker) => {
@@ -94,8 +94,7 @@ export default class extends Controller {
         maximumAge: Infinity
       }
     );
-    this._fitMapToMarkers()
-    console.log('markers fitted to map')
+
   }
 
   _fitMapToMarkers() {
