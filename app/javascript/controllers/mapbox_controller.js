@@ -94,7 +94,8 @@ export default class extends Controller {
         maximumAge: Infinity
       }
     );
-
+    this._fitMapToMarkers()
+    console.log('markers fitted to map')
   }
 
   _fitMapToMarkers() {
