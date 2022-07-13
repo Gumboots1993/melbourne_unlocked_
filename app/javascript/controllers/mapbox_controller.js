@@ -15,7 +15,9 @@ export default class extends Controller {
       style: "mapbox://styles/mapbox/streets-v10"
     })
     this._addMarkersToMap()
+    console.log('markers added to map')
     this._fitMapToMarkers()
+    console.log('markers fitted to map')
     this.map.addControl(new mapboxgl.NavigationControl());
     this.map.addControl(
       new mapboxgl.GeolocateControl({
@@ -40,6 +42,7 @@ export default class extends Controller {
       (position) => {
         const removeMarkers = document.querySelectorAll("div.marker")
         removeMarkers.forEach((marker => { marker.remove();}));
+        console.log('markers removed')
         this.markersValue.forEach((marker) => {
         // set points
         var from = turf.point([position.coords.latitude, position.coords.longitude]);
