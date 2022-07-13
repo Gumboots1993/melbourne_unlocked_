@@ -40,9 +40,9 @@ export default class extends Controller {
      navigator.geolocation.watchPosition(
       // 💚 success callback, mandatory
       (position) => {
-        var removeMarkers = document.querySelectorAll("div.marker")
-        removeMarkers.forEach((marker => { marker.remove();}));
-        console.log('markers removed')
+        // var removeMarkers = document.querySelectorAll("div.marker")
+        // removeMarkers.forEach((mark => { mark.remove();}));
+        // console.log('markers removed')
         this.markersValue.forEach((marker) => {
         // set points
         var from = turf.point([position.coords.latitude, position.coords.longitude]);
@@ -52,6 +52,12 @@ export default class extends Controller {
         // turf distance calculation
         var distance = turf.distance(from, to, options);
         console.log(distance);
+          var markToRemove = document.querySelector("div.marker")
+        if (markToRemove != null) {
+            markToRemove.remove();
+          }
+
+
           const popup = new mapboxgl.Popup({anchor: 'center'})
             .setHTML(marker.info_window)
             .setLngLat([ marker.lng, marker.lat ])
