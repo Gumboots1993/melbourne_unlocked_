@@ -1,0 +1,26 @@
+.blob {
+	background: $unlocked_blue;
+	border-radius: 25px;
+	box-shadow: 0 0 0 0 $unlocked_dark;
+	transform: scale(1);
+	animation: pulse 2s infinite;
+  width: fit-content;
+  margin: auto;
+}
+
+@keyframes pulse {
+	0% {
+		transform: scale(0.95);
+		box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.7);
+	}
+
+	70% {
+		transform: scale(1);
+		box-shadow: 0 0 0 10px rgba(0, 0, 0, 0);
+	}
+
+	100% {
+		transform: scale(0.95);
+		box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+	}
+}
