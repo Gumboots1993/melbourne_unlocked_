@@ -15,8 +15,9 @@ class PagesController < ApplicationController
 
   def leaderboard
     @users = User.all
+    @top_3 = @users.max_by(3) { |user| user.visits.size }
+    @top_10 = @users.max_by(10) { |user| user.visits.size }
     @locks = Lock.all
   end
-
 
 end
