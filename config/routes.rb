@@ -9,5 +9,6 @@ Rails.application.routes.draw do
   end
 
   get 'profile/:username', to: 'pages#profile', as: :profile
+  get 'leaderboard', to: 'pages#leaderboard', as: :leaderboard
   get 'locks/new', to: 'locks#new'
 end
