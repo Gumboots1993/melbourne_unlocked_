@@ -26,15 +26,16 @@ csv.each do |row|
 end
 
 user = User.create!(email: "beth@gmail.com", password: "password", username: "bethrox4eva", photo: "https://live.staticflickr.com/7581/15927731828_149cb4acee_b.jpg")
-user2 = User.create!(email: "moo@gmail.com", password: "password", username: "moorox4eva", photo: "https://live.staticflickr.com/7581/15927731828_149cb4acee_b.jpg" )
-user3 = User.create!(email: "user3@gmail.com", password: "password", username: "bethrox4eva1", photo: "https://live.staticflickr.com/7581/15927731828_149cb4acee_b.jpg")
-user4 = User.create!(email: "user4@gmail.com", password: "password", username: "bethrox4eva2", photo: "https://live.staticflickr.com/7581/15927731828_149cb4acee_b.jpg")
-user5 = User.create!(email: "user5@gmail.com", password: "password", username: "bethrox4eva3", photo: "https://live.staticflickr.com/7581/15927731828_149cb4acee_b.jpg")
-user6 = User.create!(email: "user6@gmail.com", password: "password", username: "bethrox4eva4", photo: "https://live.staticflickr.com/7581/15927731828_149cb4acee_b.jpg")
-user7 = User.create!(email: "user7@gmail.com", password: "password", username: "bethrox4eva5", photo: "https://live.staticflickr.com/7581/15927731828_149cb4acee_b.jpg")
-user8 = User.create!(email: "user8@gmail.com", password: "password", username: "bethrox4eva6", photo: "https://live.staticflickr.com/7581/15927731828_149cb4acee_b.jpg")
-user9 = User.create!(email: "user9@gmail.com", password: "password", username: "bethrox4eva7", photo: "https://live.staticflickr.com/7581/15927731828_149cb4acee_b.jpg")
+user2 = User.create!(email: "moo@gmail.com", password: "password", username: "Betty", photo: "https://live.staticflickr.com/7581/15927731828_149cb4acee_b.jpg" )
+user3 = User.create!(email: "user3@gmail.com", password: "password", username: "bob", photo: "https://live.staticflickr.com/7581/15927731828_149cb4acee_b.jpg")
+user4 = User.create!(email: "user4@gmail.com", password: "password", username: "angela", photo: "https://live.staticflickr.com/7581/15927731828_149cb4acee_b.jpg")
+user5 = User.create!(email: "user5@gmail.com", password: "password", username: "roxy", photo: "https://live.staticflickr.com/7581/15927731828_149cb4acee_b.jpg")
+user6 = User.create!(email: "user6@gmail.com", password: "password", username: "fred", photo: "https://live.staticflickr.com/7581/15927731828_149cb4acee_b.jpg")
+user7 = User.create!(email: "user7@gmail.com", password: "password", username: "harry", photo: "https://live.staticflickr.com/7581/15927731828_149cb4acee_b.jpg")
+user8 = User.create!(email: "user8@gmail.com", password: "password", username: "george", photo: "https://live.staticflickr.com/7581/15927731828_149cb4acee_b.jpg")
+user9 = User.create!(email: "user9@gmail.com", password: "password", username: "leo", photo: "https://live.staticflickr.com/7581/15927731828_149cb4acee_b.jpg")
 street = ["Flinders St VIC 3000", "Collins St VIC 3000", "La Trobe Street VIC 3000", "Lonsdale St VIC 3000"]
+
 
 4.times do
   lock = Lock.create!(address: "#{rand(300)} #{street.sample}" , description: "a cool location that has many cool features", image: "https://4.bp.blogspot.com/-Vw_M7aTMY44/VzClQb44aCI/AAAAAAAAAto/e3Dk5LFkfsAcim4Dw0qC9bpRg48wIDaXACLcB/s1600/IMG_4626.JPG", special_content: "did you know I am the coolest statue in melbourne", lock_type: "statue", name: "Larry La Trobe", status: "true")
