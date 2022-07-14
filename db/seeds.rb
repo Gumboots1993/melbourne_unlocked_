@@ -6,6 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 require 'csv'
+require 'faker'
 
 User.destroy_all
 Visit.destroy_all
@@ -25,48 +26,26 @@ csv.each do |row|
   t.save
 end
 
-user = User.create!(email: "beth@gmail.com", password: "password", username: "bethrox4eva", photo: "https://live.staticflickr.com/7581/15927731828_149cb4acee_b.jpg")
-user2 = User.create!(email: "moo@gmail.com", password: "password", username: "Betty", photo: "https://live.staticflickr.com/7581/15927731828_149cb4acee_b.jpg" )
-user3 = User.create!(email: "user3@gmail.com", password: "password", username: "bob", photo: "https://live.staticflickr.com/7581/15927731828_149cb4acee_b.jpg")
-user4 = User.create!(email: "user4@gmail.com", password: "password", username: "angela", photo: "https://live.staticflickr.com/7581/15927731828_149cb4acee_b.jpg")
-user5 = User.create!(email: "user5@gmail.com", password: "password", username: "roxy", photo: "https://live.staticflickr.com/7581/15927731828_149cb4acee_b.jpg")
-user6 = User.create!(email: "user6@gmail.com", password: "password", username: "fred", photo: "https://live.staticflickr.com/7581/15927731828_149cb4acee_b.jpg")
-user7 = User.create!(email: "user7@gmail.com", password: "password", username: "harry", photo: "https://live.staticflickr.com/7581/15927731828_149cb4acee_b.jpg")
-user8 = User.create!(email: "user8@gmail.com", password: "password", username: "george", photo: "https://live.staticflickr.com/7581/15927731828_149cb4acee_b.jpg")
-user9 = User.create!(email: "user9@gmail.com", password: "password", username: "leo", photo: "https://live.staticflickr.com/7581/15927731828_149cb4acee_b.jpg")
+beth = User.create!(email: "beth@gmail.com", password: "password", username: "Bethany", photo: "https://i.pravatar.cc/100?img=#{rand(70)}")
+moo = User.create!(email: "moo@gmail.com", password: "password", username: "Mooletta", photo: "https://i.pravatar.cc/100?img=#{rand(70)}")
 street = ["Flinders St VIC 3000", "Collins St VIC 3000", "La Trobe Street VIC 3000", "Lonsdale St VIC 3000"]
-
-
-4.times do
-  lock = Lock.create!(address: "#{rand(300)} #{street.sample}" , description: "a cool location that has many cool features", image: "https://4.bp.blogspot.com/-Vw_M7aTMY44/VzClQb44aCI/AAAAAAAAAto/e3Dk5LFkfsAcim4Dw0qC9bpRg48wIDaXACLcB/s1600/IMG_4626.JPG", special_content: "did you know I am the coolest statue in melbourne", lock_type: "statue", name: "Larry La Trobe", status: "true")
-  Visit.create!(user_id: user.id, lock_id: lock.id, photo:"https://live.staticflickr.com/7581/15927731828_149cb4acee_b.jpg", unlocked_date: DateTime.new(2001,2,3,4,5,6,'+03:00'))
-  Review.create!(rating: rand(5), comment: "best location ever!", user_id: user.id)
+locks = Lock.all
+lock_id = []
+locks.each do |lock|
+  lock_id << lock.id
 end
 
-3.times do
-  lock = Lock.create!(address: "#{rand(300)} #{street.sample}" , description: "a cool location that has many cool features", image: "https://4.bp.blogspot.com/-Vw_M7aTMY44/VzClQb44aCI/AAAAAAAAAto/e3Dk5LFkfsAcim4Dw0qC9bpRg48wIDaXACLcB/s1600/IMG_4626.JPG", special_content: "did you know I am the coolest statue in melbourne", lock_type: "statue", name: "The library", status: "true")
-  Visit.create!(user_id: user2.id, lock_id: lock.id, photo:"https://live.staticflickr.com/7581/15927731828_149cb4acee_b.jpg", unlocked_date: DateTime.new(2001,2,3,4,5,6,'+03:00'))
-  Review.create!(rating: rand(5), comment: "best location ever!", user_id: user2.id)
+11.times do
+  Visit.create!(user_id: beth.id, lock_id: lock_id.sample, photo:"https://live.staticflickr.com/7581/15927731828_149cb4acee_b.jpg", unlocked_date: DateTime.new(2001,2,3,4,5,6,'+03:00'))
 end
 
-2.times do
-  lock = Lock.create!(address: "#{rand(300)} #{street.sample}" , description: "a cool location that has many cool features", image: "https://4.bp.blogspot.com/-Vw_M7aTMY44/VzClQb44aCI/AAAAAAAAAto/e3Dk5LFkfsAcim4Dw0qC9bpRg48wIDaXACLcB/s1600/IMG_4626.JPG", special_content: "did you know I am the coolest statue in melbourne", lock_type: "statue", name: "The library", status: "true")
-  Visit.create!(user_id: user3.id, lock_id: lock.id, photo:"https://live.staticflickr.com/7581/15927731828_149cb4acee_b.jpg", unlocked_date: DateTime.new(2001,2,3,4,5,6,'+03:00'))
-  Review.create!(rating: rand(5), comment: "best location ever!", user_id: user3.id)
+10.times do
+  Visit.create!(user_id: moo.id, lock_id: lock_id.sample, photo:"https://live.staticflickr.com/7581/15927731828_149cb4acee_b.jpg", unlocked_date: DateTime.new(2001,2,3,4,5,6,'+03:00'))
 end
 
-  lock = Lock.create!(address: "#{rand(300)} #{street.sample}" , description: "a cool location that has many cool features", image: "https://4.bp.blogspot.com/-Vw_M7aTMY44/VzClQb44aCI/AAAAAAAAAto/e3Dk5LFkfsAcim4Dw0qC9bpRg48wIDaXACLcB/s1600/IMG_4626.JPG", special_content: "did you know I am the coolest statue in melbourne", lock_type: "statue", name: "The library", status: "true")
-  Visit.create!(user_id: user4.id, lock_id: lock.id, photo:"https://live.staticflickr.com/7581/15927731828_149cb4acee_b.jpg", unlocked_date: DateTime.new(2001,2,3,4,5,6,'+03:00'))
-  Review.create!(rating: rand(5), comment: "best location ever!", user_id: user4.id)
-
-  5.times do
-    lock = Lock.create!(address: "#{rand(300)} #{street.sample}" , description: "a cool location that has many cool features", image: "https://4.bp.blogspot.com/-Vw_M7aTMY44/VzClQb44aCI/AAAAAAAAAto/e3Dk5LFkfsAcim4Dw0qC9bpRg48wIDaXACLcB/s1600/IMG_4626.JPG", special_content: "did you know I am the coolest statue in melbourne", lock_type: "statue", name: "The library", status: "true")
-    Visit.create!(user_id: user4.id, lock_id: lock.id, photo:"https://live.staticflickr.com/7581/15927731828_149cb4acee_b.jpg", unlocked_date: DateTime.new(2001,2,3,4,5,6,'+03:00'))
-    Review.create!(rating: rand(5), comment: "best location ever!", user_id: user4.id)
+25.times do
+  user = User.create!(email: Faker::Internet.unique.email, password: "password", username: Faker::FunnyName.unique.two_word_name, photo: "https://i.pravatar.cc/100?img=#{rand(70)}")
+  rand(10).times do
+    Visit.create!(user_id: user.id, lock_id: lock_id.sample, photo:"https://live.staticflickr.com/7581/15927731828_149cb4acee_b.jpg", unlocked_date: DateTime.new(2001,2,3,4,5,6,'+03:00'))
   end
-
-  6.times do
-    lock = Lock.create!(address: "#{rand(300)} #{street.sample}" , description: "a cool location that has many cool features", image: "https://4.bp.blogspot.com/-Vw_M7aTMY44/VzClQb44aCI/AAAAAAAAAto/e3Dk5LFkfsAcim4Dw0qC9bpRg48wIDaXACLcB/s1600/IMG_4626.JPG", special_content: "did you know I am the coolest statue in melbourne", lock_type: "statue", name: "The library", status: "true")
-    Visit.create!(user_id: user5.id, lock_id: lock.id, photo:"https://live.staticflickr.com/7581/15927731828_149cb4acee_b.jpg", unlocked_date: DateTime.new(2001,2,3,4,5,6,'+03:00'))
-    Review.create!(rating: rand(5), comment: "best location ever!", user_id: user5.id)
-  end
+end
