@@ -1,0 +1,14 @@
+<div class="container text-justify">
+  <br>
+  <div class="center">
+    <h1>Congratulations Explorer!</h1>
+    <p><%= link_to @visit.lock.name, lock_path(@visit.lock) %> has now been unlocked and added to your collection!</p>
+    <%= image_tag("lock_animation.gif", size: "320x181") %>
+    <p></p>
+    <h1>But wait... There's more</h1>
+    <p>Here is an interesting fact about <%= @visit.lock.name %></p>
+    <p>"<%= @visit.lock.special_content  %>"</p>
+    <%= link_to 'Leave a Review', "#", :class => "btn btn-primary"%>
+    <%= link_to 'Share a Photo?', "#", :class => "btn btn-primary"%>
+  </div>
+</div>
