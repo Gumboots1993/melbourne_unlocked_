@@ -5,19 +5,19 @@
     <div class="leaderboard">
       <div class="unlockedtop">
         <% @top_two.each do |user| %>
-          <img src= <%= user.photo %> alt="" width="50px;" height="50px;" class="mt-4">
+          <%= link_to image_tag(user.photo, class: "avatar mt-4") , profile_path(user.username) %>
           <p><%= user.username %></p>
         <% end %>
       </div>
       <div class="unlockedtop">
         <% @top_one.each do |user| %>
-          <img src= <%= user.photo %> alt="" width="50px;" height="50px;">
+          <%= link_to image_tag(user.photo, class: "avatar") , profile_path(user.username) %>
           <p><%= user.username %></p>
         <% end %>
       </div>
       <div class="unlockedtop">
         <% @top_three.each do |user| %>
-          <img src= <%= user.photo %> alt="" width="50px;" height="50px;" class="mt-4">
+          <%= link_to image_tag(user.photo, class: "avatar mt-4") , profile_path(user.username) %>
           <p><%= user.username %></p>
         <% end %>
       </div>
@@ -49,10 +49,10 @@
     <% @top_ten.each do |user| %>
       <div class="card mb-3">
         <div class="section">
-          <img src= <%= user.photo %> alt="" width="50px;" height="50px;">
+          <%= link_to image_tag(user.photo, class: "avatar") , profile_path(user.username) %>
         </div>
         <div class="section">
-          <h2><%= user.username %></h2>
+        <h2><%= link_to user.username , profile_path(user.username) %></h2>
           <p><strong> <i class="fas fa-unlock-alt"></i>   Total Unlocked: </strong> <%= user.visits.count %> /
           <%= @locks.count %> </p>
         </div>

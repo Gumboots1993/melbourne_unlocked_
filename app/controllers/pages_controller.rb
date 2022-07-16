@@ -5,7 +5,7 @@ class PagesController < ApplicationController
   end
 
   def profile
-    @user = current_user
+    @user = User.find_by(username: params[:username])
     @user_visits = @user.visits
     @locks = Lock.all
   end
