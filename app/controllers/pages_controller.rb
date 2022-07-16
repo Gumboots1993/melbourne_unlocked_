@@ -15,12 +15,10 @@ class PagesController < ApplicationController
 
   def leaderboard
     @users = User.all
-    @top_one = @users.max_by(1) { |user| user.visits.size }
-    @leaderboard_two = @users.max_by(2) { |user| user.visits.size }
-    @leaderboard_three = @users.max_by(3) { |user| user.visits.size }
     @leaderboard_ten = @users.max_by(10) { |user| user.visits.size }
-    @top_two = @leaderboard_two.drop(1)
-    @top_three = @leaderboard_three.drop(2)
+    @top_one = @leaderboard_ten.first
+    @top_two = @leaderboard_ten.second
+    @top_three = @leaderboard_ten.third
     @top_ten = @leaderboard_ten.drop(3)
     @locks = Lock.all
   end
