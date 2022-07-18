@@ -1,6 +1,6 @@
 <div class="profile_banner">
         <br>
-        <img src=<%= lock.image %>>
+        <%= image_tag(lock.photo, class: "avatar") %>
         <h1><%= link_to lock.name, lock %></h1>
 </div>
 <div data-controller="lock-show">

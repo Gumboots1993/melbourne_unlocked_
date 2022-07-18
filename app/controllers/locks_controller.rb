@@ -41,7 +41,7 @@ class LocksController < ApplicationController
   private
 
   def lock_params
-    params.require(:lock).permit(:name, :description, :address, :image, :special_content, :lock_type, :status)
+    params.require(:lock).permit(:name, :description, :address, :photo, :special_content, :lock_type, :status)
   end
 
 
