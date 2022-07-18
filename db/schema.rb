@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_07_18_104206) do
+ActiveRecord::Schema.define(version: 2022_07_18_134829) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,7 +46,7 @@ ActiveRecord::Schema.define(version: 2022_07_18_104206) do
   create_table "locks", force: :cascade do |t|
     t.text "address"
     t.text "description"
-    t.text "image"
+    t.text "photo"
     t.text "special_content"
     t.text "lock_type"
     t.string "name"

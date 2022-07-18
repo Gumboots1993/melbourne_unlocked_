@@ -16,9 +16,11 @@ Review.destroy_all
 
 file1 = URI.open("https://i.pravatar.cc/100?img=#{rand(70)}")
 file2 = URI.open("https://i.pravatar.cc/100?img=#{rand(70)}")
+larry = URI.open("https://res.cloudinary.com/druyptave/image/upload/v1658154568/development/larry_ev7x4h.jpg")
 
 csv_text = File.read(Rails.root.join('lib', 'seeds', 'seed.csv'))
 csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')
+
 
 csv.each do |row|
   t = Lock.new
@@ -26,7 +28,7 @@ csv.each do |row|
   t.name = row['Name']
   t.address = row['Address']
   t.description = row['Description']
-
+  t.photo.attach(io: larry, filename: 'profile.jpg', content_type: 'image/jpg')
   t.save
 end
 
