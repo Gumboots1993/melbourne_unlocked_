@@ -48,7 +48,7 @@ export default class extends Controller {
         }
 
       // 🚀 get user's currnt position
-      navigator.geolocation.watchPosition(success, error, options);
+      navigator.geolocation.getCurrentPosition(success, error, options);
 
 
   }
