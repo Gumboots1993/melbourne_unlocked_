@@ -5,10 +5,18 @@
     <p><%= link_to @visit.lock.name, lock_path(@visit.lock) %> has now been unlocked and added to your collection!</p>
     <%= image_tag("lock_animation.gif", size: "320x181") %>
     <p></p>
+      <%= simple_form_for(@visit) do |f| %>
+      <%= f.input :photo, as: :file, label: "Would you like to choose a photo of #{@visit.lock.name} to share?"%>
+      <%= f.button :submit, :class => "btn btn-primary", value: "Share" %>
+    <% end %>
+    <%= link_to 'Leave a Review', "#", :class => "btn btn-primary"%>
     <h1>But wait... There's more</h1>
     <p>Here is an interesting fact about <%= @visit.lock.name %></p>
     <p>"<%= @visit.lock.special_content  %>"</p>
-    <%= link_to 'Leave a Review', "#", :class => "btn btn-primary"%>
-    <%= link_to 'Share a Photo?', "#", :class => "btn btn-primary"%>
   </div>
 </div>
+
+
+<% if @visit.photo.attached? == true %>
+<%= cl_image_tag @visit.photo.key, height: 300, width: 400, crop: :fill %>
+<% end %>

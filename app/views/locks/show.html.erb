@@ -39,5 +39,13 @@
 <p><%= @lock.description %></p>
 <h1>Fun Fact</h1>
 <p><%= @lock.special_content %></p>
+<h1>Explorer Photos</h1>
+  <p>here are all the other explorer's photos of <%= @lock.name %>
+  <% Visit.where(lock_id: @lock.id).each do |visit| %>
+    <% if visit.photo.attached? == true %>
+    <%= cl_image_tag visit.photo.key, height: 300, width: 400, crop: :fill %>
+    <% end %>
+  <% end %>
+</div>
 </div>
 </div>

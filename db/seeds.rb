@@ -7,6 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 require 'csv'
 require 'faker'
+require "open-uri"
 
 User.destroy_all
 Visit.destroy_all
@@ -36,19 +37,19 @@ locks.each do |lock|
 end
 
 11.times do
-  Visit.create!(user_id: beth.id, lock_id: lock_id[1], photo:"https://live.staticflickr.com/7581/15927731828_149cb4acee_b.jpg", unlocked_date: DateTime.new(2001,2,3,4,5,6,'+03:00'))
+  Visit.create!(user_id: beth.id, lock_id: lock_id[1], unlocked_date: DateTime.new(2001,2,3,4,5,6,'+03:00'))
   lock_id.rotate!
 end
 
 10.times do
-  Visit.create!(user_id: moo.id, lock_id: lock_id[1], photo:"https://live.staticflickr.com/7581/15927731828_149cb4acee_b.jpg", unlocked_date: DateTime.new(2001,2,3,4,5,6,'+03:00'))
+  Visit.create!(user_id: moo.id, lock_id: lock_id[1], unlocked_date: DateTime.new(2001,2,3,4,5,6,'+03:00'))
   lock_id.rotate!
 end
 
 25.times do
   user = User.create!(email: Faker::Internet.unique.email, password: "password", username: Faker::FunnyName.unique.two_word_name, photo: "https://i.pravatar.cc/100?img=#{rand(70)}")
   rand(10).times do
-    Visit.create!(user_id: user.id, lock_id: lock_id[1], photo:"https://live.staticflickr.com/7581/15927731828_149cb4acee_b.jpg", unlocked_date: DateTime.new(2001,2,3,4,5,6,'+03:00'))
+    Visit.create!(user_id: user.id, lock_id: lock_id[1], unlocked_date: DateTime.new(2001,2,3,4,5,6,'+03:00'))
     lock_id.rotate!
   end
 end
