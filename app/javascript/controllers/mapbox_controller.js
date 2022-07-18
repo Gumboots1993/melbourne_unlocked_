@@ -53,7 +53,7 @@ export default class extends Controller {
         var distance = turf.distance(from, to, options);
         console.log(distance);
           const popup = new mapboxgl.Popup({anchor: 'center'})
-            .setHTML(marker.info_window)
+            // .setHTML(marker.info_window)
             .setLngLat([ marker.lng, marker.lat ])
             .setMaxWidth('50');
           // const customPopup = document.createElement("div")
@@ -88,6 +88,9 @@ export default class extends Controller {
           popup.on('open', () => {
             this.map.flyTo({center: [ marker.lng, marker.lat ], zoom: 15});;
             });
+          popup.on('open', () => {
+            popup.setHTML(marker.info_window);
+          } )
         });
 
       },
