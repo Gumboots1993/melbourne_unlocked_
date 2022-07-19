@@ -32,13 +32,30 @@
   </div>
 </div>
 
-<br>
 <div class="container">
   <div class="center">
-    <p><i class="fas fa-map-marker-alt"></i> <%= @lock.address %></p>
+   <ul class="nav nav-tabs nav-fill" id="myTab" role="tablist">
+      <li class="nav-item" role="presentation">
+        <button class="nav-link active" id="Overview-tab" data-bs-toggle="tab" data-bs-target="#Overview" type="button" role="tab" aria-controls="Overview" aria-selected="true"> Overview</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="SecretsUnlocked-tab" data-bs-toggle="tab" data-bs-target="#SecretsUnlocked" type="button" role="tab" aria-controls="SecretsUnlocked" aria-selected="false">Secrets</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="Community-tab" data-bs-toggle="tab" data-bs-target="#Community" type="button" role="tab" aria-controls="Community" aria-selected="false"> Community</button>
+      </li>
+    </ul>
+    <div class="tab-content" id="myTabContent">
+      <div class="tab-pane fade show active" id="Overview" role="tabpanel" aria-labelledby="Overview-tab">
+      <br>
+      <h1>Address</h1>
+      <p><i class="fas fa-map-marker-alt"></i> <%= @lock.address %></p>
     <h1>Description</h1>
     <p><%= @lock.description %></p>
-    <h1>Secrets Unlocked!</h1>
+      </div>
+      <div class="tab-pane fade" id="SecretsUnlocked" role="tabpanel" aria-labelledby="SecretsUnlocked-tab">
+      <br>
+      <h1>Secrets</h1>
     <% if Visit.where(user_id: current_user, lock_id: @lock.id).exists? %>
       <p><%= @lock.special_content %></p>
     <% else %>
@@ -47,7 +64,9 @@
         <p>You must unlock this location before it will reveal its secrets!</p>
       </div>
     <% end %>
-    <br>
+      </div>
+      <div class="tab-pane fade" id="Community" role="tabpanel" aria-labelledby="Community-tab">
+      <br>
     <h1>Community</h1>
     <p><%= @lock.visits.count %> other explorer's have visited
     <%= @lock.name  %>!</p>
@@ -57,14 +76,18 @@
         <%= f.button :submit, :class => "btn btn-primary", value: "Share Photo" %>
       <% end %>
     <% end %>
+    <br>
     <% if @current_user_visit.exists? && @visit.reviews == [] %>
+    <p>Tell us what you thought of <%= @lock.name  %>!</p>
       <%= simple_form_for [@visit, @review] do |f| %>
             <%= f.input :rating, collection: [1,2,3,4,5], placeholder: 'Enter a rating from 1 - 5' %>
             <%= f.input :comment, placeholder: 'Leave a comment' %>
             <%= f.button :submit, :class => "btn btn-primary" %>
       <% end %>
     <% end %>
-    <p> Check out some of thier photos and thoughts...</p>
+<br>
+    <% if Visit.where(lock_id: @lock.id).exists?%>
+    <p> Here is How other Explorers went...</p>
     <br>
     <div class= "cards">
       <% Visit.where(lock_id: @lock.id).each do |visit| %>
@@ -84,6 +107,11 @@
           </div>
         <% end %>
       <% end %>
+      </div>
+    </div>
+    <% else %>
+    <p> There arent any photos or comments to share yet. We challenge you to be the first! </p>
+    <% end %>
       </div>
     </div>
   </div>
