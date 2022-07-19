@@ -59,7 +59,7 @@ export default class extends Controller {
           const popup = new mapboxgl.Popup({anchor: 'center'})
             // .setHTML(marker.info_window)
             .setLngLat([ marker.lng, marker.lat ])
-            .setMaxWidth('50');
+            .setMaxWidth('75vw');
           // const customPopup = document.createElement("div")
           // customPopup.className = "popupp"
           // popupp.style.borderRadius = "5%"
