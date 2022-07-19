@@ -24,12 +24,18 @@ class LocksController < ApplicationController
 
   def create
     @lock = Lock.new(lock_params)
-    # @lock.user = current_user
     if @lock.save
-      redirect_to @lock
+      if current_user.admin?
+        redirect_to lock_path(@lock)
+      else
+        redirect_to locks_new_lock_request_path
+      end
     else
       render :new
     end
+  end
+
+  def new_lock
   end
 
   def photo
@@ -49,3 +55,7 @@ class LocksController < ApplicationController
 
 
 end
+
+# 1. Update index page to only show approved
+# 2. create admin only page to view pending
+# 3. Dashboard controller for admins
