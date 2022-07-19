@@ -95,11 +95,6 @@ export default class extends Controller {
           popup.on('open', () => {
             popup.setHTML(marker.info_window);
           } )
-          navigator.geolocation.watchPosition(
-            (position) => {
-              popup.setHTML(marker.info_window);
-            }
-          )
         });
 
       },
