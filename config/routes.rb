@@ -6,10 +6,11 @@ Rails.application.routes.draw do
 
   resources :locks do
     resources :visits, only: [:create]
-    resources :reviews, only: [:new, :create]
   end
 
-  resources :visits, only: [:edit, :update, :show]
+  resources :visits, only: [:edit, :update, :show] do
+    resources :reviews, only: [:new, :create]
+  end
 
   get 'profile/:username', to: 'pages#profile', as: :profile
   get 'leaderboard', to: 'pages#leaderboard', as: :leaderboard
