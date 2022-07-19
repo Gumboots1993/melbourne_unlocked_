@@ -10,7 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_07_18_134829) do
+ActiveRecord::Schema.define(version: 2022_07_14_110500) do
+
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,11 +51,11 @@ ActiveRecord::Schema.define(version: 2022_07_18_134829) do
     t.text "special_content"
     t.text "lock_type"
     t.string "name"
-    t.boolean "status"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.float "latitude"
     t.float "longitude"
+    t.string "status", default: "Pending"
   end
 
   create_table "reviews", force: :cascade do |t|
@@ -76,6 +77,7 @@ ActiveRecord::Schema.define(version: 2022_07_18_134829) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "username"
     t.text "photo"
+    t.boolean "admin", default: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
