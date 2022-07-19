@@ -1,16 +1,16 @@
 <div class="new-lock-container">
-  <h1>Want to list a lock?</h1>
+  <h1>Want to suggest a lock?</h1>
   <br>
+  <p>Do you know a great location that should be on this app? Please let us know!</p>
   <br>
     <div class="form">
       <%= simple_form_for @lock do |f| %>
       <div class="form_wrapper">
         <div class="form_div">
-          <h3>The Basics:</h3>
           <%= f.input :name  %>
           <%= f.input :description %>
           <%= f.input :address  %>
-          <%= f.input :image,  label: "Link to picture" %>
+          <%= f.input :photo, as: :file,  label: "Link to picture" %>
           <%= f.input :special_content  %>
           <%= f.button :submit, :class => "btn btn-primary" %>
         <% end %>

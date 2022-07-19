@@ -5,7 +5,7 @@ class PagesController < ApplicationController
   end
 
   def profile
-    @user = current_user
+    @user = User.find_by(username: params[:username])
     @user_visits = @user.visits
     @locks = Lock.all
   end
@@ -14,7 +14,13 @@ class PagesController < ApplicationController
   end
 
   def leaderboard
+    @users = User.all
+    @leaderboard_ten = @users.max_by(10) { |user| user.visits.size }
+    @top_one = @leaderboard_ten.first
+    @top_two = @leaderboard_ten.second
+    @top_three = @leaderboard_ten.third
+    @top_ten = @leaderboard_ten.drop(3)
+    @locks = Lock.all
   end
-
 
 end

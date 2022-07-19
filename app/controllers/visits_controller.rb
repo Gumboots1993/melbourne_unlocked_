@@ -1,7 +1,9 @@
 class VisitsController < ApplicationController
 
   def create
-    @visit = Visits.new
+    @visit = Visit.new
+    @visit.lock_id = params[:lock_id]
+    @visit.unlocked_date = DateTime.now()
     @visit.user = current_user
     if @visit.save
       redirect_to visit_path(@visit)
@@ -10,4 +12,26 @@ class VisitsController < ApplicationController
     end
   end
 
+  def show
+    @visit = Visit.find(params[:id])
+  end
+
+  def add_photo
+    @visit = Visit.find(params[:id])
+  end
+
+  def update
+    @visit = Visit.find(params[:id])
+    if @visit.update(visit_params)
+      redirect_to @visit, notice: 'Photo added!'
+    else
+      render :edit
+    end
+  end
+
+  private
+
+  def visit_params
+    params.require(:visit).permit(:photo)
+  end
 end

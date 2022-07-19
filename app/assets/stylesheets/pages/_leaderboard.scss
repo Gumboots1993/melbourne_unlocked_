@@ -1,0 +1,27 @@
+.leaderboard {
+  display: flex;
+  justify-content: space-around;
+}
+
+.leaderboard img {
+  width: 80px;
+  height: 80px;
+}
+
+.leaderboard p {
+font-size: x-small;
+color: $unlocked_dark;
+}
+
+.leaderboard_score {
+  display: flex;
+  justify-content: space-around;
+  position: relative;
+  bottom: 50px;
+  padding: 0px 15px 0px 15px;
+  color: $white;
+}
+
+#leaderboard {
+  padding: 15px 15px 0px;
+}

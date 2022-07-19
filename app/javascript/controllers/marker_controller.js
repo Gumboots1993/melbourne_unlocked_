@@ -2,7 +2,6 @@ import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
   connect() {
-    console.log("hello");
         // 💚 success callback, mandatory
         function success(position) {
         // target the element containing the location data

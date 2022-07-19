@@ -1,0 +1,24 @@
+.special_content_hidden {
+  background-color: $unlocked-gray;
+  text-align: center;
+  padding: 10px 10px 10px 10px;
+  border-radius: 20px;
+  display: flex;
+  max-width: 500px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.special_content_hidden p {
+margin-bottom: auto;
+margin-top: auto;
+}
+
+.special_content_hidden i {
+  font-size: 60px;
+  color: $unlocked-dark;
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-right: 5px;
+  margin-left: 5px;
+}

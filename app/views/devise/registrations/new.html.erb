@@ -1,5 +1,4 @@
 <div class="container justify-content-center">
-
 <h2>Sign up</h2>
 <p>Start unlocking locks and having an adventure in Melbourne today!</p>
 <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
@@ -9,7 +8,7 @@
     <%= f.input :username,
                 required: true,
                 input_html: { autocomplete: "username" } %>
-    <%= f.input :photo,
+    <%= f.input :photo, as: :file,
                 required: true,
                 input_html: { autocomplete: "photo" } %>
     <%= f.input :email,
@@ -26,9 +25,9 @@
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit, "Sign up" %>
+    <%= f.button :submit, "Sign up", :class => "btn btn-primary" %>
   </div>
 <% end %>
-
+<br>
 <%= render "devise/shared/links" %>
 </div>
