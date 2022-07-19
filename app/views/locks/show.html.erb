@@ -33,27 +33,35 @@
 </div>
 <br>
 <div class="container">
-<div class="center">
-<p><i class="fas fa-map-marker-alt"></i> <%= @lock.address %></p>
-<h1>Description</h1>
-<p><%= @lock.description %></p>
-<h1>Fun Fact</h1>
-<p><%= @lock.special_content %></p>
-<h1>Community</h1>
-<%= @lock.visits.count %> other explorer's have visited
-<%= @lock.name %>! Check out some of thier photos and thoughts...</p>
-  <br>
-  <div class= "cards">
-  <% Visit.where(lock_id: @lock.id).each do |visit| %>
-    <% if visit.photo.attached? == true %>
-    <div class="card mb-3">
-    <%= cl_image_tag visit.photo.key, height: 100, width: 100, crop: :fill %>
-    <p>Unlocked by <%= link_to User.where(id: visit.user_id).first.username , profile_path(User.where(id: visit.user_id).first.username) %>
-    at <%= visit.unlocked_date %> </p>
-    <% end %>
+  <div class="center">
+    <p><i class="fas fa-map-marker-alt"></i> <%= @lock.address %></p>
+    <h1>Description</h1>
+    <p><%= @lock.description %></p>
+    <h1>Secrets Unlocked!</h1>
+    <% if Visit.where(user_id: current_user, lock_id: @lock.id).exists? %>
+    <p><%= @lock.special_content %></p>
+    <% else %>
+    <div class="special_content_hidden">
+      <i class="fas fa-user-secret"></i>
+      <p>You must unlock this location before it will reveal its secrets!</p>
     </div>
-  <% end %>
+    <% end %>
+    <br>
+    <h1>Community</h1>
+    <%= @lock.visits.count %> other explorer's have visited
+    <%= @lock.name %>! Check out some of thier photos and thoughts...</p>
+    <br>
+    <div class= "cards">
+      <% Visit.where(lock_id: @lock.id).each do |visit| %>
+        <% if visit.photo.attached? == true %>
+          <div class="card mb-3">
+          <%= cl_image_tag visit.photo.key, height: 100, width: 100, crop: :fill %>
+          <p>Unlocked by <%= link_to User.where(id: visit.user_id).first.username , profile_path(User.where(id: visit.user_id).first.username) %>
+          at <%= visit.unlocked_date %> </p>
+          </div>
+        <% end %>
+      <% end %>
+      </div>
+    </div>
   </div>
-</div>
-</div>
 </div>
