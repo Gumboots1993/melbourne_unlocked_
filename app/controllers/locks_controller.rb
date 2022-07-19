@@ -22,17 +22,29 @@ class LocksController < ApplicationController
   def create
     @lock = Lock.new(lock_params)
     # @lock.user = current_user
-    if @lock.save
+    if current_user.admin? == true && @lock.save
       redirect_to lock_path(@lock)
-    else
+    elsif current_user.admin? == true
       render :new
+    elsif current_user.admin? == false
+      redirect_to locks_error_path
+
     end
+    # if @lock.save
+    #   redirect_to lock_path(@lock)
+    # else
+    #   render :new
+    # end
+  end
+
+  def error
   end
 
   def photo
   end
 
   def accept
+
   end
 
   def decline

@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   devise_for :users
   root to: 'locks#index'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  get 'locks/error', to: 'locks#error'
 
   resources :locks do
     resources :visits, only: [:create]
