@@ -16,7 +16,12 @@
     <%= cl_image_tag @visit.photo.key, margin: 10, height: 100, width: 100, crop: :fill %>
     <br>
     <p></p>
-    <%= link_to 'Leave a Review', "#", :class => "btn btn-primary"%>
+     <%= simple_form_for [@visit, @review] do |f| %>
+            <%= f.input :rating, collection: [1,2,3,4,5], placeholder: 'Enter a rating from 1 - 5' %>
+            <%= f.input :comment, placeholder: 'Leave a comment' %>
+            <%= f.button :submit, :class => "btn btn-primary" %>
+    <% end %>
+    <p>asdfasdfsdf</p>
     <br>
     <% end %>
     <br>
