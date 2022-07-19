@@ -8,7 +8,9 @@ class ReviewsController < ApplicationController
   def create
     @review = Review.new(review_params)
     @review.visit = set_visit
-    @review.save
+    if @review.save
+      redirect_to lock_path(@review.visit.lock)
+    end
   end
 
   private

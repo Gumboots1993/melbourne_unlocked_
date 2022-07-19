@@ -13,6 +13,9 @@ class LocksController < ApplicationController
 
   def show
     @lock = Lock.find(params[:id])
+    @current_user_visit = Visit.where(user_id: current_user, lock_id: @lock.id)
+    @review = Review.new
+    @visit = Visit.where(user_id: current_user, lock_id: @lock.id).first
   end
 
   def new
@@ -23,7 +26,7 @@ class LocksController < ApplicationController
     @lock = Lock.new(lock_params)
     # @lock.user = current_user
     if @lock.save
-      redirect_to lock_path(@lock)
+      redirect_to @lock
     else
       render :new
     end

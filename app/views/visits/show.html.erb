@@ -5,28 +5,12 @@
     <p><%= link_to @visit.lock.name, lock_path(@visit.lock) %> has now been unlocked and added to your collection!</p>
     <%= image_tag("lock_animation.gif", size: "320x181") %>
     <p></p>
-      <% if @visit.photo.attached? == false %>
-      <%= simple_form_for(@visit) do |f| %>
-      <%= f.input :photo, as: :file, label: "Would you like to choose a photo of #{@visit.lock.name} to share?"%>
-      <%= f.button :submit, :class => "btn btn-primary", value: "Share Photo" %>
-      <%= link_to 'Leave a Review', "#", :class => "btn btn-primary"%>
-    <% end %>
-    <% else %>
-    <p>Thanks for shareing! Your photo is now available to other explorers!</p>
-    <%= cl_image_tag @visit.photo.key, margin: 10, height: 100, width: 100, crop: :fill %>
-    <br>
-    <p></p>
-     <%= simple_form_for [@visit, @review] do |f| %>
-            <%= f.input :rating, collection: [1,2,3,4,5], placeholder: 'Enter a rating from 1 - 5' %>
-            <%= f.input :comment, placeholder: 'Leave a comment' %>
-            <%= f.button :submit, :class => "btn btn-primary" %>
-    <% end %>
-    <p>asdfasdfsdf</p>
-    <br>
-    <% end %>
     <br>
     <h1>But wait... There's more</h1>
     <p>Here is an interesting fact about <%= @visit.lock.name %></p>
     <p>"<%= @visit.lock.special_content  %>"</p>
+    <br>
+      <p>Continue to the lock page to upload photos and share your thoughts!</p>
+  <%= link_to 'Go to Lock', lock_path(@visit.lock), :class => "btn btn-primary"%>
   </div>
 </div>
