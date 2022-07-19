@@ -12,15 +12,19 @@ export default class extends Controller {
 
     this.map = new mapboxgl.Map({
       container: this.element,
-      style: "mapbox://styles/mapbox/streets-v10"
+      style: "mapbox://styles/mapbox/streets-v11"
     })
     this._addMarkersToMap()
     console.log('markers added to map')
     this._fitMapToMarkers()
+    this._addBuildingsToMap()
     console.log('markers fitted to map')
-    this.map.addControl(new mapboxgl.NavigationControl());
-    this.map.addControl(
-      new mapboxgl.GeolocateControl({
+    const nav = new mapboxgl.NavigationControl({
+      visualizePitch: true
+    });
+    this.map.addControl(nav);
+
+    const geolocate = new mapboxgl.GeolocateControl({
       positionOptions: {
       enableHighAccuracy: true,
       maximumAge: Infinity
@@ -30,7 +34,10 @@ export default class extends Controller {
       // Draw an arrow next to the location dot to indicate which direction the device is heading.
       showUserHeading: true
       })
-      );
+      this.map.addControl(geolocate);
+      this.map.on('load', () => {
+        geolocate.trigger();
+      })
   }
 
   _addMarkersToMap() {
@@ -40,9 +47,6 @@ export default class extends Controller {
      navigator.geolocation.getCurrentPosition(
       // 💚 success callback, mandatory
       (position) => {
-        // var removeMarkers = document.querySelectorAll("div.marker")
-        // removeMarkers.forEach((mark => { mark.remove();}));
-        // console.log('markers removed')
         this.markersValue.forEach((marker) => {
         // set points
         var from = turf.point([position.coords.latitude, position.coords.longitude]);
@@ -53,7 +57,7 @@ export default class extends Controller {
         var distance = turf.distance(from, to, options);
         console.log(distance);
           const popup = new mapboxgl.Popup({anchor: 'center'})
-            .setHTML(marker.info_window)
+            // .setHTML(marker.info_window)
             .setLngLat([ marker.lng, marker.lat ])
             .setMaxWidth('50');
           // const customPopup = document.createElement("div")
@@ -88,6 +92,9 @@ export default class extends Controller {
           popup.on('open', () => {
             this.map.flyTo({center: [ marker.lng, marker.lat ], zoom: 15});;
             });
+          popup.on('open', () => {
+            popup.setHTML(marker.info_window);
+          } )
         });
 
       },
@@ -107,5 +114,56 @@ export default class extends Controller {
     const bounds = new mapboxgl.LngLatBounds()
     this.markersValue.forEach(marker => bounds.extend([ marker.lng, marker.lat ]))
     this.map.fitBounds(bounds, { padding: 30, maxZoom: 13, duration: 0 })
+  }
+
+  _addBuildingsToMap() {
+    this.map.on('load', () => {
+      // Insert the layer beneath any symbol layer.
+      const layers = this.map.getStyle().layers;
+      const labelLayerId = layers.find(
+      (layer) => layer.type === 'symbol' && layer.layout['text-field']
+      ).id;
+
+      // The 'building' layer in the Mapbox Streets
+      // vector tileset contains building height data
+      // from OpenStreetMap.
+      this.map.addLayer(
+      {
+      'id': 'add-3d-buildings',
+      'source': 'composite',
+      'source-layer': 'building',
+      'filter': ['==', 'extrude', 'true'],
+      'type': 'fill-extrusion',
+      'minzoom': 15,
+      'paint': {
+      'fill-extrusion-color': '#aaa',
+
+      // Use an 'interpolate' expression to
+      // add a smooth transition effect to
+      // the buildings as the user zooms in.
+      'fill-extrusion-height': [
+      'interpolate',
+      ['linear'],
+      ['zoom'],
+      15,
+      0,
+      15.05,
+      ['get', 'height']
+      ],
+      'fill-extrusion-base': [
+      'interpolate',
+      ['linear'],
+      ['zoom'],
+      15,
+      0,
+      15.05,
+      ['get', 'min_height']
+      ],
+      'fill-extrusion-opacity': 0.6
+      }
+      },
+      labelLayerId
+      );
+      });
   }
 }
