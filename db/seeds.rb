@@ -16,7 +16,7 @@ Review.destroy_all
 
 file1 = URI.open("https://i.pravatar.cc/100?img=#{rand(70)}")
 file2 = URI.open("https://i.pravatar.cc/100?img=#{rand(70)}")
-larry = URI.open("https://res.cloudinary.com/druyptave/image/upload/v1658154568/development/larry_ev7x4h.jpg")
+
 
 csv_text = File.read(Rails.root.join('lib', 'seeds', 'seed.csv'))
 csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')
@@ -28,7 +28,10 @@ csv.each do |row|
   t.name = row['Name']
   t.address = row['Address']
   t.description = row['Description']
-  t.photo.attach(io: larry, filename: 'profile.jpg', content_type: 'image/jpg')
+  t.special_content = row['Special_Content']
+  t.lock_type = row['Lock_type']
+  photo = URI.open(row['Photo'])
+  t.photo.attach(io: photo, filename: 'profile.jpg', content_type: 'image/jpg')
   t.save
 end
 
@@ -43,12 +46,12 @@ locks.each do |lock|
   lock_id << lock.id
 end
 
-11.times do
+rand(44).times do
   Visit.create!(user_id: beth.id, lock_id: lock_id[1], unlocked_date: DateTime.new(2001,2,3,4,5,6,'+03:00'))
   lock_id.rotate!
 end
 
-10.times do
+rand(44).times do
   Visit.create!(user_id: moo.id, lock_id: lock_id[1], unlocked_date: DateTime.new(2001,2,3,4,5,6,'+03:00'))
   lock_id.rotate!
 end
@@ -57,7 +60,7 @@ end
   user = User.create!(email: Faker::Internet.unique.email, password: "password", username: Faker::FunnyName.unique.two_word_name)
   file = URI.open("https://i.pravatar.cc/100?img=#{rand(70)}")
   user.photo.attach(io: file, filename: 'profile.jpg', content_type: 'image/jpg')
-  rand(10).times do
+  rand(44).times do
     Visit.create!(user_id: user.id, lock_id: lock_id[1], unlocked_date: DateTime.new(2001,2,3,4,5,6,'+03:00'))
     lock_id.rotate!
   end
