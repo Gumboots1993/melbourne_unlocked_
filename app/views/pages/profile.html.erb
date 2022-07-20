@@ -1,10 +1,9 @@
 <div class="profile_banner">
-<br>
         <%= image_tag(@user.photo, class: "avatar") %>
         <h1><%= @user.username %>'s Profile Page</h1>
   </div>
 <div class="mini_banner">
-    <p><strong> <i class="fas fa-trophy"></i>  Total Unlocked: </strong> <%= @user_visits.count %> /
+    <p class="mb-0"><strong> <i class="fas fa-trophy"></i>  Total Unlocked: </strong> <%= @user_visits.count %> /
     <%= @locks.count %> </p>
 </div>
 <div class="container">
