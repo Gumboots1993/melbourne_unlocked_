@@ -50,52 +50,54 @@
     <div class="tab-content" id="myTabContent">
 
       <div class="tab-pane fade show active" id="Overview" role="tabpanel" aria-labelledby="Overview-tab">
-      <br>
+        <br>
 
-        <div class="address_box">
-          <div class="address_map">
-            <div style="width: 120px; height: 120px; border-radius: 100%;"
-                data-controller="mapbox"
-                data-mapbox-markers-value="<%= @marker.to_json %>"
-                data-mapbox-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+          <div class="address_box">
+            <div class="address_map">
+              <div style="width: 120px; height: 120px; border-radius: 100%;"
+                  data-controller="mapbox"
+                  data-mapbox-markers-value="<%= @marker.to_json %>"
+                  data-mapbox-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+              </div>
+            </div>
+            <div class="address_text">
+              <h2>Location</h2>
+              <p><i class="fas fa-map-marker-alt"></i> <%= @lock.address %></p>
             </div>
           </div>
-          <div class="address_text">
-            <h2>Location</h2>
-            <p><i class="fas fa-map-marker-alt"></i> <%= @lock.address %></p>
+
+          <h1>Description</h1>
+          <p><%= @lock.description %></p>
+
+                <br>
+        <h1>Secrets</h1>
+        <% if Visit.where(user_id: current_user, lock_id: @lock.id).exists? %>
+          <p><%= @lock.special_content %></p>
+        <% else %>
+          <div class="special_content_hidden">
+            <i class="fas fa-user-secret"></i>
+            <p>You must unlock this location before it will reveal its secrets!</p>
           </div>
-        </div>
-
-        <h1>Description</h1>
-        <p><%= @lock.description %></p>
-
-              <br>
-      <h1>Secrets</h1>
-      <% if Visit.where(user_id: current_user, lock_id: @lock.id).exists? %>
-        <p><%= @lock.special_content %></p>
-      <% else %>
-        <div class="special_content_hidden">
-          <i class="fas fa-user-secret"></i>
-          <p>You must unlock this location before it will reveal its secrets!</p>
-        </div>
-      <% end %>
+        <% end %>
 
       </div>
 
     <div class="tab-pane fade" id="Reviews" role="tabpanel" aria-labelledby="Reviews-tab">
-    <br>
-    <% if @current_user_visit.exists? && @visit.reviews == [] %>
-      <p>Tell us what you thought of <%= @lock.name  %>!</p>
-      <%= simple_form_for [@visit, @review] do |f| %>
-            <%= f.input :rating, collection: [1,2,3,4,5], placeholder: 'Enter a rating from 1 - 5' %>
-            <%= f.input :comment, placeholder: 'Leave a comment' %>
-            <%= f.button :submit, :class => "btn btn-primary" %>
+      <br>
+
+
+      <% if @current_user_visit.exists? && @visit.reviews == [] %>
+        <p>Tell us what you thought of <%= @lock.name  %>!</p>
+        <%= simple_form_for [@visit, @review] do |f| %>
+              <%= f.input :rating, collection: [1,2,3,4,5], placeholder: 'Enter a rating from 1 - 5' %>
+              <%= f.input :comment, placeholder: 'Leave a comment' %>
+              <%= f.button :submit, :class => "btn btn-primary" %>
+        <% end %>
       <% end %>
-    <% end %>
-    <br>
-    <% @reviews.each do |review| %>
-    <%= review.comment %>
-    <% end %>
+      <br>
+      <% @reviews.each do |review| %>
+      <%= review.comment %>
+      <% end %>
     </div>
 
 
