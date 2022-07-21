@@ -1,5 +1,5 @@
 <div class="profile_banner">
-        <%= image_tag(@lock.photo, class: "avatar") %>
+        <%= cl_image_tag(@lock.photo.key, class: "avatar") %>
         <h1><%= @lock.name %></h1>
 </div>
 <div data-controller="lock-show">

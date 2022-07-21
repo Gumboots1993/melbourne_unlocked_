@@ -1,5 +1,5 @@
 <div class="profile_banner">
-        <%= image_tag(@user.photo, class: "avatar") %>
+        <%= cl_image_tag(@user.photo.key, class: "avatar") %>
         <h1><%= @user.username %>'s Profile Page</h1>
   </div>
 <div class="mini_banner">
@@ -14,7 +14,7 @@
   <% @user_visits.each do |visit| %>
   <div class="card mb-3">
     <div class="section">
-    <%= image_tag(visit.lock.photo, class: "avatar") %>
+    <%= cl_image_tag(visit.lock.photo.key, class: "avatar") %>
     </div>
     <div class="section">
       <h2><%= link_to visit.lock.name, lock_path(visit.lock.id) %></h2>
