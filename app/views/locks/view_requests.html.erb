@@ -1,0 +1,8 @@
+
+<h1>Y0</h1>
+
+<% @locks.each do |lock| %>
+  <%= lock.name %>
+      <%= link_to 'Accept?', accept_lock_path(lock), method: :patch, data: { confirm: "Are you sure?" }, :class => "btn btn-primary" %>
+      <%= link_to 'Decline?', decline_lock_path(lock), method: :patch, data: { confirm: "Are you sure?" }, :class => "btn btn-info" %>
+<% end %>

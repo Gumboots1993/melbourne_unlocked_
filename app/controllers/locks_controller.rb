@@ -1,6 +1,6 @@
 class LocksController < ApplicationController
   def index
-    @locks = Lock.all
+    @locks = Lock.where(status: "Accepted")
     @markers = @locks.geocoded.map do |lock|
       {
         lat: lock.latitude,
@@ -35,13 +35,31 @@ class LocksController < ApplicationController
   def new_lock
   end
 
+  def view_requests
+    @locks = Lock.where(status: "Pending")
+  end
+
   def photo
   end
 
   def accept
+    @lock = Lock.find(params[:id])
+    @lock.status = "Accepted"
+    if @lock.save
+      redirect_to root_path
+    else
+      render :new
+    end
   end
 
   def decline
+    @lock = Lock.find(params[:id])
+    @lock.status = "Declined"
+    if @lock.save
+      redirect_to root_path
+    else
+      render :new
+    end
   end
 
   private
