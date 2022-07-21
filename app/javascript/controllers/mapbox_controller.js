@@ -22,7 +22,10 @@ export default class extends Controller {
     const nav = new mapboxgl.NavigationControl({
       visualizePitch: true
     });
-    this.map.addControl(nav);
+
+    if (window.location.pathname === '/') {
+      this.map.addControl(nav);
+    }
 
     const geolocate = new mapboxgl.GeolocateControl({
       positionOptions: {
@@ -34,10 +37,12 @@ export default class extends Controller {
       // Draw an arrow next to the location dot to indicate which direction the device is heading.
       showUserHeading: true
       })
-      this.map.addControl(geolocate);
-      this.map.on('load', () => {
-        geolocate.trigger();
-      })
+      if (window.location.pathname === '/') {
+        this.map.addControl(geolocate);
+        this.map.on('load', () => {
+          geolocate.trigger();
+        })
+      }
   }
 
   _addMarkersToMap() {
