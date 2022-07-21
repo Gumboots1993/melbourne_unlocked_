@@ -4,15 +4,15 @@
     <br>
     <div class="leaderboard">
       <div class="unlockedtop">
-          <%= link_to image_tag(@top_two.photo, class: "avatar mt-4") , profile_path(@top_two.username) %>
+          <%= link_to cl_image_tag(@top_two.photo.key, class: "avatar mt-4") , profile_path(@top_two.username) %>
           <p><%= @top_two.username %></p>
       </div>
       <div class="unlockedtop">
-          <%= link_to image_tag(@top_one.photo, class: "avatar") , profile_path(@top_one.username) %>
+          <%= link_to cl_image_tag(@top_one.photo.key, class: "avatar") , profile_path(@top_one.username) %>
           <p><%= @top_one.username %></p>
       </div>
       <div class="unlockedtop">
-          <%= link_to image_tag(@top_three.photo, class: "avatar mt-4") , profile_path(@top_three.username) %>
+          <%= link_to cl_image_tag(@top_three.photo.key, class: "avatar mt-4") , profile_path(@top_three.username) %>
           <p><%= @top_three.username %></p>
       </div>
     </div>
@@ -37,7 +37,7 @@
     <% @top_ten.each do |user| %>
       <div class="card mb-3">
         <div class="section">
-          <%= link_to image_tag(user.photo, class: "avatar") , profile_path(user.username) %>
+          <%= link_to cl_image_tag(user.photo.key, class: "avatar") , profile_path(user.username) %>
         </div>
         <div class="section">
         <h2><%= link_to user.username , profile_path(user.username) %></h2>
