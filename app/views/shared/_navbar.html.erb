@@ -10,12 +10,19 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav me-auto">
-      <% if user_signed_in? %>
+      <% if user_signed_in? && current_user.admin %>
         <li class="nav-item">
           <%= link_to "Suggest a lock", new_lock_path, class: "nav-link" %>
         </li>
         <li class="nav-item">
           <%= link_to "View requests", locks_view_requests_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+        <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "nav-link" %>
+        </li>
+      <% elsif user_signed_in? && current_user.admin == false %>
+        <li class="nav-item">
+          <%= link_to "Suggest a lock", new_lock_path, class: "nav-link" %>
         </li>
         <li class="nav-item">
         <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "nav-link" %>
