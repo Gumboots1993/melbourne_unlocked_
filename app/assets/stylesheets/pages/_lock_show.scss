@@ -1,0 +1,32 @@
+.address_box {
+  display: flex;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.address_box p {
+  font-size: smaller;
+
+}
+
+.address_box i {
+  color: $unlocked-blue;
+}
+
+.long_n_lat {
+  display: flex;
+  justify-content: space-between;
+}
+
+.address_text {
+  padding: 20px;
+  text-align: left;
+  background-color: $unlocked-gray-light;
+  padding: 5px;
+  border-radius: 10px;
+}
+
+.address_map {
+  border: 5px;
+  border-color: $unlocked-blue;
+}
