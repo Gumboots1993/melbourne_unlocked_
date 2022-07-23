@@ -47,6 +47,7 @@ class LocksController < ApplicationController
 
   def view_requests
     @locks = Lock.where(status: "Pending")
+    @declined_locks = Lock.where(status: "Declined")
   end
 
   def photo
