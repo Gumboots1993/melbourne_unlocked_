@@ -2,7 +2,6 @@ import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
   connect() {
-    // console.log("hello");
         // 💚 success callback, mandatory
         function success(position) {
         // target the element containing the location data
@@ -14,7 +13,6 @@ export default class extends Controller {
         var lat = elLocked.getAttribute('data-lat')
         var lng = elLocked.getAttribute('data-lng')
         var distance = 0
-        console.log(lng);
           // set points
           var from = turf.point([position.coords.latitude, position.coords.longitude]);
           var to = turf.point([lat, lng]);
@@ -22,8 +20,6 @@ export default class extends Controller {
           var options = {units: "kilometers"};
           // turf distance calculation
           distance = turf.distance(from, to, options);
-
-          // console.log(distance);
 
           if (unlocked === "true") {
             elLocked.remove();

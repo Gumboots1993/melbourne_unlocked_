@@ -15,10 +15,8 @@ export default class extends Controller {
       style: "mapbox://styles/mapbox/streets-v11"
     })
     this._addMarkersToMap()
-    console.log('markers added to map')
     this._fitMapToMarkers()
     this._addBuildingsToMap()
-    console.log('markers fitted to map')
     const nav = new mapboxgl.NavigationControl({
       visualizePitch: true
     });
@@ -60,7 +58,7 @@ export default class extends Controller {
         var options = {units: "kilometers"};
         // turf distance calculation
         var distance = turf.distance(from, to, options);
-        console.log(distance);
+
           const popup = new mapboxgl.Popup({anchor: 'center'})
             // .setHTML(marker.info_window)
             .setLngLat([ marker.lng, marker.lat ])
@@ -93,7 +91,6 @@ export default class extends Controller {
             .setLngLat([ marker.lng, marker.lat ])
             .setPopup(popup)
             .addTo(this.map)
-          console.log("markers created")
           popup.on('open', () => {
             this.map.flyTo({center: [ marker.lng, marker.lat ], zoom: 15});;
             });
