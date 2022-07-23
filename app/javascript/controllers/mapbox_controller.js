@@ -23,9 +23,9 @@ export default class extends Controller {
       visualizePitch: true
     });
 
-    if (window.location.pathname === '/') {
-      this.map.addControl(nav);
-    }
+    // if (window.location.pathname === '/') {
+    //   this.map.addControl(nav);
+    // }
 
     const geolocate = new mapboxgl.GeolocateControl({
       positionOptions: {
@@ -38,7 +38,7 @@ export default class extends Controller {
       showUserHeading: true
       })
       if (window.location.pathname === '/') {
-        this.map.addControl(geolocate);
+        this.map.addControl(geolocate, 'top-right');
         this.map.on('load', () => {
           geolocate.trigger();
         })

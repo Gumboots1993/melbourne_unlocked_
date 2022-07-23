@@ -2,8 +2,13 @@ class LocksController < ApplicationController
   def index
     @all_locks = Lock.where(status: "Accepted")
 
+    @is_redirect = false
+
     if params[:query].present?
       @locks = @all_locks.search_by_all(params[:query])
+      if @locks === []
+        redirect_to root_path, notice: "Sorry!! No search results found :("
+      end
     else
       @locks = @all_locks
     end
@@ -88,13 +93,13 @@ class LocksController < ApplicationController
   end
 
   def all_reviews_for_lock(lock)
-        reviews = []
-        Visit.where(lock_id: lock.id).each do |visit|
-          if Review.where(visit_id: visit.id).exists?
-            reviews.push(Review.where(visit_id: visit.id).first)
-          end
-        end
-        reviews
+    reviews = []
+    Visit.where(lock_id: lock.id).each do |visit|
+      if Review.where(visit_id: visit.id).exists?
+        reviews.push(Review.where(visit_id: visit.id).first)
+      end
+    end
+    reviews
   end
 
   def all_photos_for_lock(lock)
@@ -105,7 +110,7 @@ class LocksController < ApplicationController
       end
     end
     photos
-end
+  end
 
 end
 

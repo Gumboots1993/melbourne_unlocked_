@@ -12,4 +12,5 @@ class Lock < ApplicationRecord
     using: {
       tsearch: { prefix: true }
     }
+
 end
