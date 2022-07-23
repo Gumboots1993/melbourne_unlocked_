@@ -8,14 +8,15 @@
 require 'csv'
 require 'faker'
 require "open-uri"
+require "mini_magick"
 
 User.destroy_all
 Visit.destroy_all
 Lock.destroy_all
 Review.destroy_all
 
-file1 = URI.open("https://i.pravatar.cc/100?img=#{rand(70)}")
-file2 = URI.open("https://i.pravatar.cc/100?img=#{rand(70)}")
+file1 = URI.open("/home/beth/code/Gumboots1993/melbourne_unlocked_/app/assets/images/beth.jpg")
+# file2 = URI.open("https://i.pravatar.cc/100?img=#{rand(70)}")
 
 
 csv_text = File.read(Rails.root.join('lib', 'seeds', 'seed.csv'))
@@ -53,14 +54,27 @@ csv.each do |row|
 end
 
 beth = User.create!(email: "beth@gmail.com", password: "password", username: "Bethany", admin: "true")
-beth.photo.attach(io: file1, filename: 'profile.jpg', content_type: 'image/jpg')
+
+first_image = MiniMagick::Image.new("/home/beth/code/Gumboots1993/melbourne_unlocked_/app/assets/images/melbourne_unlocked_low_res.png")
+second_image = MiniMagick::Image.new("/home/beth/code/Gumboots1993/melbourne_unlocked_/app/assets/images/beth.jpg")
+result = first_image.composite(second_image) do |c|
+  c.compose "Over"    # OverCompositeOp
+  c.geometry "+20+20" # copy second_image onto first_image from (20, 20)
+end
+result.write "output.jpg"
+photo2 = URI.open(result.path)
+
+beth.photo.attach(io: photo2, filename: 'profile.jpg', content_type: 'image/jpg')
 locks = Lock.all
 lock_id = []
 locks.each do |lock|
   lock_id << lock.id
 end
 
-rand(44).times do
+true_or_false = Faker::Boolean.boolean(true_ratio: 0.2)
+
+rand(5).times do
+  next if true_or_false
   lock = Lock.find_by(id: lock_id[1])
   lock_photo = URI.open(lock.photo.url)
   visit = Visit.create!(user_id: beth.id, lock_id: lock_id[1], unlocked_date: DateTime.now)
@@ -70,31 +84,31 @@ rand(44).times do
   visit.photo.attach(io: lock_photo, filename: 'profile.jpg', content_type: 'image/jpg')
 end
 
-15.times do
-  user = User.create!(email: Faker::Internet.unique.email, password: "password", username: Faker::FunnyName.unique.two_word_name, admin: "false")
-  file = URI.open("https://i.pravatar.cc/100?img=#{rand(70)}")
-  user.photo.attach(io: file, filename: 'profile.jpg', content_type: 'image/jpg')
-  rand(44).times do
-    lock_two = Lock.find_by(id: lock_id[1])
-    lock_photo = URI.open(lock_two.photo.url)
-    visit_two = Visit.create!(user_id: user.id, lock_id: lock_id[1], unlocked_date: DateTime.now)
-    lock_id.rotate!
-    review = review_rating.sample
-    Review.create!(rating: review[1], comment: review[0], visit_id: visit_two.id, user_id: user.id)
-    rand(0..1).times do
-      rand(0..1).times do
-        rand(0..1).times do
-          visit_two.photo.attach(io: lock_photo, filename: 'profile.jpg', content_type: 'image/jpg')
-        end
-      end
-    end
-  end
-end
+# 15.times do
+#   user = User.create!(email: Faker::Internet.unique.email, password: "password", username: Faker::FunnyName.unique.two_word_name, admin: "false")
+#   file = URI.open("https://i.pravatar.cc/100?img=#{rand(70)}")
+#   user.photo.attach(io: file, filename: 'profile.jpg', content_type: 'image/jpg')
+#   rand(44).times do
+#     lock_two = Lock.find_by(id: lock_id[1])
+#     lock_photo = URI.open(lock_two.photo.url)
+#     visit_two = Visit.create!(user_id: user.id, lock_id: lock_id[1], unlocked_date: DateTime.now)
+#     lock_id.rotate!
+#     review = review_rating.sample
+#     Review.create!(rating: review[1], comment: review[0], visit_id: visit_two.id, user_id: user.id)
+#     rand(0..1).times do
+#       rand(0..1).times do
+#         rand(0..1).times do
+#           visit_two.photo.attach(io: lock_photo, filename: 'profile.jpg', content_type: 'image/jpg')
+#         end
+#       end
+#     end
+#   end
+# end
 
-pending_lock = Lock.create!(name: "Glorious Pot Hole", address: "Melbourne, 3000",
-              description: "This Pot hole has been here for 2 months and is now a part of Melbourne!",
-              special_content:"send an email to the council and you win a taco",
-              lock_type: "nature walk", status:"Pending")
+# pending_lock = Lock.create!(name: "Glorious Pot Hole", address: "Melbourne, 3000",
+#               description: "This Pot hole has been here for 2 months and is now a part of Melbourne!",
+#               special_content:"send an email to the council and you win a taco",
+#               lock_type: "nature walk", status:"Pending")
 
-pending_photo = URI.open("https://wpcdn.us-east-1.vip.tn-cloud.net/www.kxly.com/content/uploads/2022/01/j/e/pothole-e1641582427324-1024x576.jpg")
-pending_lock.photo.attach(io: pending_photo, filename: 'profile.jpg', content_type: 'image/jpg')
+# pending_photo = URI.open("https://wpcdn.us-east-1.vip.tn-cloud.net/www.kxly.com/content/uploads/2022/01/j/e/pothole-e1641582427324-1024x576.jpg")
+# pending_lock.photo.attach(io: pending_photo, filename: 'profile.jpg', content_type: 'image/jpg')
