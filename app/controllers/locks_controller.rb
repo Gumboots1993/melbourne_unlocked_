@@ -1,6 +1,13 @@
 class LocksController < ApplicationController
   def index
-    @locks = Lock.where(status: "Accepted")
+    @all_locks = Lock.where(status: "Accepted")
+
+    if params[:query].present?
+      @locks = @all_locks.search_by_all(params[:query])
+    else
+      @locks = @all_locks
+    end
+
     @markers = @locks.geocoded.map do |lock|
       {
         lat: lock.latitude,
