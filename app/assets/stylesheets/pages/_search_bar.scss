@@ -1,0 +1,20 @@
+.search_bar {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  width: 280px;
+}
+
+.search_bar #query {
+  width: 280px;
+}
+
+.notice {
+  display: flex;
+  justify-content: center;
+  background: #F4F4F4;
+  border-radius: 20px;
+  margin-top: 4px;
+}
