@@ -1,8 +1,27 @@
 
-<h1>Y0</h1>
-
-<% @locks.each do |lock| %>
-  <%= lock.name %>
-      <%= link_to 'Accept?', accept_lock_path(lock), method: :patch, data: { confirm: "Are you sure?" }, :class => "btn btn-primary" %>
-      <%= link_to 'Decline?', decline_lock_path(lock), method: :patch, data: { confirm: "Are you sure?" }, :class => "btn btn-info" %>
-<% end %>
+<h1 style="margin-top: 10px; margin-bottom: 10px;">View all locks submissions</h1>
+<div class="container">
+  <div class="cards">
+      <% @locks.each do |lock| %>
+      <div class="card" id="request-card">
+          <div class="card-info">
+            <h2><%= lock.name %></h2>
+            <br>
+          </div>
+            <%= cl_image_tag(lock.photo.key, id: "request-card-image") %>
+            <br>
+          <div class="card-info">
+            <p><%= lock.description %></p>
+          </div>
+        <div class="card-buttons">
+          <div class="card-button">
+            <%= link_to 'Accept?', accept_lock_path(lock), method: :patch, data: { confirm: "Are you sure?" }, :class => "btn btn-primary" %>
+          </div>
+          <div class="card-button">
+            <%= link_to 'Decline?', decline_lock_path(lock), method: :patch, data: { confirm: "Are you sure?" }, :class => "btn btn-info" %>
+          </div>
+        </div>
+      </div>
+      <% end %>
+  </div>
+</div>

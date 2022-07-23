@@ -32,6 +32,7 @@ csv.each do |row|
   t.lock_type = row['Lock_type']
   photo = URI.open(row['Photo'])
   t.photo.attach(io: photo, filename: 'profile.jpg', content_type: 'image/jpg')
+  t.status = "Accepted"
   t.save
 end
 
