@@ -13,7 +13,6 @@
   <div class="tab-content" id="myTab-content">
 
     <div class="tab-pane fade show active" id="Overview" role="tabpanel" aria-labelledby="Overview-tab">
-
       <div class="cards">
           <% @locks.each do |lock| %>
           <div class="card" id="request-card">
@@ -39,7 +38,7 @@
       </div>
     </div>
 
-    <div class="tab-pane fade show active" id="Reviews" role="tabpanel" aria-labelledby="Overview-tab">
+    <div class="tab-pane fade show" id="Reviews" role="tabpanel" aria-labelledby="Overview-tab">
       <div class="cards">
           <% @declined_locks.each do |lock| %>
           <div class="card" id="request-card">
