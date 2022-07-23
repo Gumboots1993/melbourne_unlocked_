@@ -40,7 +40,8 @@ class LocksController < ApplicationController
     @lock = Lock.new(lock_params)
     if @lock.save
       if current_user.admin?
-        redirect_to lock_path(@lock)
+        @lock.update!(status: "Accepted")
+        redirect_to root_path
       else
         redirect_to locks_new_lock_request_path
       end
