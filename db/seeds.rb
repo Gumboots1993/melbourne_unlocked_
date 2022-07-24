@@ -53,18 +53,6 @@ csv.each do |row|
   t.save
 end
 
-beth = User.create!(email: "beth@gmail.com", password: "password", username: "Bethany", admin: "true")
-
-first_image = MiniMagick::Image.new("/home/beth/code/Gumboots1993/melbourne_unlocked_/app/assets/images/melbourne_unlocked_low_res.png")
-second_image = MiniMagick::Image.new("/home/beth/code/Gumboots1993/melbourne_unlocked_/app/assets/images/beth.jpg")
-result = first_image.composite(second_image) do |c|
-  c.compose "Over"    # OverCompositeOp
-  c.geometry "+20+20" # copy second_image onto first_image from (20, 20)
-end
-result.write "output.jpg"
-photo2 = URI.open(result.path)
-
-beth.photo.attach(io: photo2, filename: 'profile.jpg', content_type: 'image/jpg')
 locks = Lock.all
 lock_id = []
 locks.each do |lock|
@@ -73,15 +61,34 @@ end
 
 true_or_false = Faker::Boolean.boolean(true_ratio: 0.2)
 
-rand(5).times do
-  next if true_or_false
+beth = User.create!(email: "beth@gmail.com", password: "password", username: "Bethany", admin: "true")
+beth.photo.attach(io: file1, filename: 'profile.jpg', content_type: 'image/jpg')
+
+5.times do
   lock = Lock.find_by(id: lock_id[1])
   lock_photo = URI.open(lock.photo.url)
   visit = Visit.create!(user_id: beth.id, lock_id: lock_id[1], unlocked_date: DateTime.now)
   lock_id.rotate!
+
+  # next if true_or_false
+
   review = review_rating.sample
   Review.create!(rating: review[1], comment: review[0], visit_id: visit.id, user_id: beth.id)
-  visit.photo.attach(io: lock_photo, filename: 'profile.jpg', content_type: 'image/jpg')
+
+  second_image = MiniMagick::Image.new("/home/beth/code/Gumboots1993/melbourne_unlocked_/app/assets/images/poppet1.png")
+  first_image = MiniMagick::Image.new("/home/beth/code/Gumboots1993/melbourne_unlocked_/app/assets/images/beth.jpg")
+  first_image.resize "150x150"
+  first_image.write("logo.jpg")
+  second_image.resize "150x150"
+  second_image.write("beth2.jpg")
+  result = first_image.composite(second_image) do |c|
+    c.compose "Over"    # OverCompositeOp
+    c.gravity "center"
+  end
+  result.write "output.jpg"
+  compo_photo = URI.open(result.path)
+
+  visit.photo.attach(io: compo_photo, filename: 'profile.jpg', content_type: 'image/jpg')
 end
 
 # 15.times do
