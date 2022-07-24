@@ -15,9 +15,6 @@ Visit.destroy_all
 Lock.destroy_all
 Review.destroy_all
 
-file1 = URI.open("/home/beth/code/Gumboots1993/melbourne_unlocked_/app/assets/images/beth.jpg")
-# file2 = URI.open("https://i.pravatar.cc/100?img=#{rand(70)}")
-
 
 csv_text = File.read(Rails.root.join('lib', 'seeds', 'seed.csv'))
 csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')
@@ -37,6 +34,24 @@ review_rating = [
   ["This lock sucked!", 2],
   ["I would like a refund... oh wait, I didnt pay for this... but still.. give me a refund!", 2],
   ["a seagull did a doo doo on this so it was a little icky", 1]
+]
+
+people = [
+  "/home/beth/code/Gumboots1993/melbourne_unlocked_/app/assets/images/people/person_1.png",
+  "/home/beth/code/Gumboots1993/melbourne_unlocked_/app/assets/images/people/person_2.png",
+  "/home/beth/code/Gumboots1993/melbourne_unlocked_/app/assets/images/people/person_3.png",
+  "/home/beth/code/Gumboots1993/melbourne_unlocked_/app/assets/images/people/person_4.png",
+  "/home/beth/code/Gumboots1993/melbourne_unlocked_/app/assets/images/people/person_5.png",
+  "/home/beth/code/Gumboots1993/melbourne_unlocked_/app/assets/images/people/person_6.png",
+  "/home/beth/code/Gumboots1993/melbourne_unlocked_/app/assets/images/people/person_7.png",
+  "/home/beth/code/Gumboots1993/melbourne_unlocked_/app/assets/images/people/person_8.png",
+  "/home/beth/code/Gumboots1993/melbourne_unlocked_/app/assets/images/people/person_9.png",
+  "/home/beth/code/Gumboots1993/melbourne_unlocked_/app/assets/images/people/person_10.png",
+  "/home/beth/code/Gumboots1993/melbourne_unlocked_/app/assets/images/people/person_11.png",
+  "/home/beth/code/Gumboots1993/melbourne_unlocked_/app/assets/images/people/person_12.png",
+  "/home/beth/code/Gumboots1993/melbourne_unlocked_/app/assets/images/people/person_13.png",
+  "/home/beth/code/Gumboots1993/melbourne_unlocked_/app/assets/images/people/person_14.png",
+  "/home/beth/code/Gumboots1993/melbourne_unlocked_/app/assets/images/people/person_15.png"
 ]
 
 csv.each do |row|
@@ -59,27 +74,29 @@ locks.each do |lock|
   lock_id << lock.id
 end
 
-true_or_false = Faker::Boolean.boolean(true_ratio: 0.2)
 
+file1 = URI.open("/home/beth/code/Gumboots1993/melbourne_unlocked_/app/assets/images/beth.jpg")
 beth = User.create!(email: "beth@gmail.com", password: "password", username: "Bethany", admin: "true")
 beth.photo.attach(io: file1, filename: 'profile.jpg', content_type: 'image/jpg')
 
-5.times do
+rand(44).times do
   lock = Lock.find_by(id: lock_id[1])
-  lock_photo = URI.open(lock.photo.url)
+  lock_photo_url = lock.photo.url
+  lock_photo = URI.open(lock_photo_url)
   visit = Visit.create!(user_id: beth.id, lock_id: lock_id[1], unlocked_date: DateTime.now)
   lock_id.rotate!
 
-  # next if true_or_false
+  true_or_false = Faker::Boolean.boolean(true_ratio: rand(0.9))
+  next if true_or_false
 
   review = review_rating.sample
   Review.create!(rating: review[1], comment: review[0], visit_id: visit.id, user_id: beth.id)
 
-  second_image = MiniMagick::Image.new("/home/beth/code/Gumboots1993/melbourne_unlocked_/app/assets/images/poppet1.png")
-  first_image = MiniMagick::Image.new("/home/beth/code/Gumboots1993/melbourne_unlocked_/app/assets/images/beth.jpg")
-  first_image.resize "150x150"
+  second_image = MiniMagick::Image.open(people[0])
+  first_image = MiniMagick::Image.open(lock_photo_url)
+  first_image.resize "500x500"
   first_image.write("logo.jpg")
-  second_image.resize "150x150"
+  second_image.resize "500x500"
   second_image.write("beth2.jpg")
   result = first_image.composite(second_image) do |c|
     c.compose "Over"    # OverCompositeOp
@@ -91,31 +108,46 @@ beth.photo.attach(io: file1, filename: 'profile.jpg', content_type: 'image/jpg')
   visit.photo.attach(io: compo_photo, filename: 'profile.jpg', content_type: 'image/jpg')
 end
 
-# 15.times do
-#   user = User.create!(email: Faker::Internet.unique.email, password: "password", username: Faker::FunnyName.unique.two_word_name, admin: "false")
-#   file = URI.open("https://i.pravatar.cc/100?img=#{rand(70)}")
-#   user.photo.attach(io: file, filename: 'profile.jpg', content_type: 'image/jpg')
-#   rand(44).times do
-#     lock_two = Lock.find_by(id: lock_id[1])
-#     lock_photo = URI.open(lock_two.photo.url)
-#     visit_two = Visit.create!(user_id: user.id, lock_id: lock_id[1], unlocked_date: DateTime.now)
-#     lock_id.rotate!
-#     review = review_rating.sample
-#     Review.create!(rating: review[1], comment: review[0], visit_id: visit_two.id, user_id: user.id)
-#     rand(0..1).times do
-#       rand(0..1).times do
-#         rand(0..1).times do
-#           visit_two.photo.attach(io: lock_photo, filename: 'profile.jpg', content_type: 'image/jpg')
-#         end
-#       end
-#     end
-#   end
-# end
+15.times do
+  user = User.create!(email: Faker::Internet.unique.email, password: "password", username: Faker::FunnyName.unique.two_word_name, admin: "false")
+  file = URI.open("https://i.pravatar.cc/100?img=#{rand(70)}")
+  user.photo.attach(io: file, filename: 'profile.jpg', content_type: 'image/jpg')
+  people.rotate!
+  rand(44).times do
+    lock = Lock.find_by(id: lock_id[1])
+    lock_photo_url = lock.photo.url
+    lock_photo = URI.open(lock_photo_url)
+    visit = Visit.create!(user_id: user.id, lock_id: lock_id[1], unlocked_date: DateTime.now)
+    lock_id.rotate!
 
-# pending_lock = Lock.create!(name: "Glorious Pot Hole", address: "Melbourne, 3000",
-#               description: "This Pot hole has been here for 2 months and is now a part of Melbourne!",
-#               special_content:"send an email to the council and you win a taco",
-#               lock_type: "nature walk", status:"Pending")
+    true_or_false = Faker::Boolean.boolean(true_ratio: rand(0.5))
+    next if true_or_false
 
-# pending_photo = URI.open("https://wpcdn.us-east-1.vip.tn-cloud.net/www.kxly.com/content/uploads/2022/01/j/e/pothole-e1641582427324-1024x576.jpg")
-# pending_lock.photo.attach(io: pending_photo, filename: 'profile.jpg', content_type: 'image/jpg')
+    review = review_rating.sample
+    Review.create!(rating: review[1], comment: review[0], visit_id: visit.id, user_id: user.id)
+
+    second_image = MiniMagick::Image.open(people[0])
+    first_image = MiniMagick::Image.open(lock_photo_url)
+    first_image.resize "500x500"
+    first_image.write("logo.jpg")
+    second_image.resize "500x500"
+    second_image.write("beth2.jpg")
+
+    result = first_image.composite(second_image) do |c|
+      c.compose "Over"    # OverCompositeOp
+      c.gravity "center"
+    end
+    result.write "output.jpg"
+
+    compo_photo = URI.open(result.path)
+    visit.photo.attach(io: compo_photo, filename: 'profile.jpg', content_type: 'image/jpg')
+  end
+end
+
+pending_lock = Lock.create!(name: "Glorious Pot Hole", address: "Melbourne, 3000",
+              description: "This Pot hole has been here for 2 months and is now a part of Melbourne!",
+              special_content:"send an email to the council and you win a taco",
+              lock_type: "nature walk", status:"Pending")
+
+pending_photo = URI.open("https://wpcdn.us-east-1.vip.tn-cloud.net/www.kxly.com/content/uploads/2022/01/j/e/pothole-e1641582427324-1024x576.jpg")
+pending_lock.photo.attach(io: pending_photo, filename: 'profile.jpg', content_type: 'image/jpg')
