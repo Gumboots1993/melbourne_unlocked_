@@ -1,3 +1,4 @@
+<div class="leader_page">
 <div id="leaderboard" class="profile_banner">
   <div class="container">
     <h1> Leaderboard</h1>
@@ -32,19 +33,28 @@
         <h4><i class="fas fa-unlock-alt"></i> <%= @top_three.visits.count %></h4>
     </div>
   </div>
-<div class="container">
-  <div class="cards">
-    <% @top_ten.each do |user| %>
-      <div class="card mb-3">
-        <div class="section">
-          <%= link_to cl_image_tag(user.photo.key, class: "avatar") , profile_path(user.username) %>
+<div class="leader_part2">
+  <div class="container">
+    <div id="leader" class="cards">
+    <br>
+      <% @top_ten.each do |user| %>
+        <div id="leader" class="card mt-1 mb-1">
+          <div class="section">
+            <%= link_to cl_image_tag(user.photo.key, class: "avatar") , profile_path(user.username) %>
+          </div>
+          <div class="section mt-auto mb-auto">
+              <h3><%= link_to user.username , profile_path(user.username) %></h3>
+              <p><strong> <i class="fas fa-unlock-alt"></i>   Total Unlocked: </strong> <%= user.visits.count %> /
+              <%= @locks.count %> </p>
+          </div>
+          <div class="section ms-auto mb-auto mt-auto pe-3">
+          <%= "#{@counter += 1}th"  %>
+          </div>
         </div>
-        <div class="section">
-        <h2><%= link_to user.username , profile_path(user.username) %></h2>
-          <p><strong> <i class="fas fa-unlock-alt"></i>   Total Unlocked: </strong> <%= user.visits.count %> /
-          <%= @locks.count %> </p>
-        </div>
-      </div>
-    <% end %>
+        <div class="line border-bottom" style="width: 90%"></div>
+      <% end %>
+      <br>
+    </div>
   </div>
+</div>
 </div>

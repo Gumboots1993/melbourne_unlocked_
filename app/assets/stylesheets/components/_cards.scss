@@ -1,5 +1,5 @@
 
-.cards {
+.lock_review .cards {
   padding-bottom: 10px;
   display: grid;
   grid-template-columns: 1fr;
@@ -8,7 +8,7 @@
   align-content: center;
 }
 
-.card {
+.lock_review .card {
   display: grid;
   padding: 10px;
 }
