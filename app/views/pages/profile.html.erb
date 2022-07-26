@@ -3,9 +3,22 @@
         <h1><%= @user.username %>'s Profile Page</h1>
   </div>
 <div class="mini_banner">
-    <p class="mb-0"><strong> <i class="fas fa-trophy"></i>  Total Unlocked: </strong> <%= @user_visits.count %> /
-    <%= @locks.count %> </p>
+  <p class="mb-0">
+  <div class="lvl d-flex justify-content-between">
+      <p id="lvl_title"> <i class="fas fa-star"></i> <strong><%= @lvl %></strong></p>
+      <p><i class="fas fa-unlock-alt"> </i> <strong><%= @user_visits.count %> </strong> Unlocked  </p>
+  </div>
+    <div class="bar">
+      <div class="progress m-0" style="width: 100%">
+        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: <%= @progress %>"></div>
+      </div>
+      <div id="lvl_bottom" class="lvl ms-auto mt-2">
+      <p><%= @locks_left[0] %> more unlocks to
+      <%= @locks_left[1] %></p>
+    </div>
+  </div>
 </div>
+
 <div class="container">
 <br>
   <h1>Unlocked History!</h1>

@@ -10,3 +10,26 @@
   margin-right: 10px;
   margin-left: 20px;
 }
+
+#lvl_title {
+  color: $unlocked_blue;
+  margin-bottom: 0;
+}
+
+#lvl_title i {
+  color: $unlocked_orange;
+}
+
+.lvl {
+  text-align: right;
+}
+
+.lvl p {
+  margin-bottom: 8px;
+}
+
+#lvl_bottom p {
+  margin-bottom: 0px;
+  font-size: small;
+  color: $unlocked-gray-light;
+}
