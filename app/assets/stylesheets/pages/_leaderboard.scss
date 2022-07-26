@@ -1,12 +1,22 @@
 .leaderboard {
   display: flex;
   justify-content: space-around;
+  max-width: 350px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .leaderboard img {
-  width: 80px;
-  height: 80px;
+  width: 70px;
+  height: 70px;
 }
+
+.leaderboardimage {
+max-width: 300px;
+margin-left: auto;
+margin-right: auto;
+}
+
 
 .leaderboard p {
 font-size: x-small;
@@ -17,11 +27,47 @@ color: $unlocked_dark;
   display: flex;
   justify-content: space-around;
   position: relative;
-  bottom: 50px;
-  padding: 0px 15px 0px 15px;
+  bottom: 40px;
+  margin-bottom: -34px;
   color: $white;
+  max-width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#leader p {
+  font-size: small;
 }
 
 #leaderboard {
   padding: 15px 15px 0px;
+}
+
+#leader .card {
+  border: 0;
+  background: none;
+}
+
+#leader img {
+  width: 50px;
+  height: 50px;
+}
+
+.leader_part2 {
+  background-color: $unlocked-light;
+}
+
+.leader_part2 .container{
+  background-color: $white;
+  width: 90%;
+  border-radius: 25px 25px 0px 0px;
+}
+
+.leader_page {
+  background-color: $unlocked-light;
+}
+
+.line {
+  margin-left: auto;
+  margin-right: auto;
 }

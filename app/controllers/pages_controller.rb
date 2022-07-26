@@ -21,6 +21,7 @@ class PagesController < ApplicationController
     @top_three = @leaderboard_ten.third
     @top_ten = @leaderboard_ten.drop(3)
     @locks = Lock.all
+    @counter = 3
   end
 
 end
