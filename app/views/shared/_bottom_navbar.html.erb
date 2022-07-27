@@ -7,7 +7,12 @@
      <i class="fa-solid fa-trophy"></i>
     <% end %>
     <%= link_to notifications_path(current_user.username) do %>
-     <i class="fa-solid fa-bell"></i>
+      <i class="fa-solid fa-bell"></i>
+      <% if current_user.notifications.unread.length > 0 %>
+        <div class="notification_no position-absolute mt-1 translate-middle badge rounded-circle bg-danger">
+          <%=current_user.notifications.unread.length %>
+        </div>
+      <% end %>
     <% end %>
     <% if user_signed_in? %>
     <%= link_to cl_image_tag(current_user.photo.key, class: "avatar") , profile_path(current_user.username) %>

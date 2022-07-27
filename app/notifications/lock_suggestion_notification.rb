@@ -22,6 +22,6 @@ class LockSuggestionNotification < Noticed::Base
   end
   #
   def url
-    root_path
+    lock_path(params[:lock])
   end
 end
