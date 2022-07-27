@@ -18,4 +18,5 @@ Rails.application.routes.draw do
   get 'locks/new', to: 'locks#new'
   patch 'locks/:id/accept', to: 'locks#accept', as: :accept_lock
   patch 'locks/:id/decline', to: 'locks#decline', as: :decline_lock
+  get 'notifications/:username', to: 'notifications#index', as: :notifications
 end

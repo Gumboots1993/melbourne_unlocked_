@@ -31,3 +31,6 @@
 
 en:
   hello: "Hello world"
+  notifications:
+    lock_suggestion_notification:
+      message: "Your Lock has been approved!"
