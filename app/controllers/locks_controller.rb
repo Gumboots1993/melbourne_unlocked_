@@ -70,6 +70,7 @@ class LocksController < ApplicationController
     @lock = Lock.find(params[:id])
     @lock.status = "Accepted"
     if @lock.save
+      LockSuggestionNotification.with(lock: @lock.id).deliver(User.all)
       redirect_to root_path
     else
       render :new
