@@ -82,64 +82,66 @@
 
       </div>
 
-    <div class="tab-pane fade" id="Reviews" role="tabpanel" aria-labelledby="Reviews-tab">
-      <br>
+      <div class="tab-pane fade" id="Reviews" role="tabpanel" aria-labelledby="Reviews-tab">
+        <br>
 
 
-      <% if @current_user_visit.exists? && @visit.reviews == [] %>
-        <p>Tell us what you thought of <%= @lock.name  %>!</p>
-        <%= simple_form_for [@visit, @review] do |f| %>
-              <%= f.input :rating, collection: [1,2,3,4,5], placeholder: 'Enter a rating from 1 - 5' %>
-              <%= f.input :comment, placeholder: 'Leave a comment' %>
-              <%= f.button :submit, :class => "btn btn-primary" %>
+        <% if @current_user_visit.exists? && @visit.reviews == [] %>
+          <p>Tell us what you thought of <%= @lock.name  %>!</p>
+          <%= simple_form_for [@visit, @review] do |f| %>
+                <%= f.input :rating, collection: [1,2,3,4,5], placeholder: 'Enter a rating from 1 - 5' %>
+                <%= f.input :comment, placeholder: 'Leave a comment' %>
+                <%= f.button :submit, :class => "btn btn-primary" %>
+          <% end %>
         <% end %>
-      <% end %>
-      <br>
-      <% @reviews.each do |review| %>
-      <%= review.comment %>
-      <% end %>
-    </div>
+        <br>
+        <% @reviews.each do |review| %>
+        <%= review.comment %>
+        <% end %>
+      </div>
 
 
       <div class="tab-pane fade" id="Photos" role="tabpanel" aria-labelledby="Photos-tab">
-      <br>
-    <h1>Photos</h1>
-    <p><%= @lock.visits.count %> other explorer's have visited
-    <%= @lock.name  %>!</p>
-    <% if @current_user_visit.exists? && @current_user_visit.first.photo.attached? == false %>
-      <%= simple_form_for(@visit) do |f| %>
-        <%= f.input :photo, as: :file, label: "Would you like to choose a photo of #{@visit.lock.name} to share?"%>
-        <%= f.button :submit, :class => "btn btn-primary", value: "Share Photo" %>
-      <% end %>
-    <% end %>
-    <br>
-    <br>
-    <% if Visit.where(lock_id: @lock.id).exists?%>
-    <p> Here is How other Explorers went...</p>
-    <br>
-    <div class= "cards">
-      <% Visit.where(lock_id: @lock.id).each do |visit| %>
-        <% if visit.photo.attached? == true %>
-          <div class="card mb-3">
-          <%= cl_image_tag visit.photo.key, height: 100, width: 100, crop: :fill %>
-          <div class ="text">
-          <p>Unlocked by <%= link_to User.where(id: visit.user_id).first.username , profile_path(User.where(id: visit.user_id).first.username) %>
-          at <%= visit.unlocked_date %> </p>
-          <% if Review.where(visit_id: visit.id).exists? %>
-          <p> <strong>Comment: </strong><%= Review.where(visit_id: visit.id).first.comment %></p>
+        <br>
+        <h1>Photos</h1>
+        <p><%= @lock.visits.count %> other explorer's have visited
+        <%= @lock.name  %>!</p>
+        <% if @current_user_visit.exists? && @current_user_visit.first.photo.attached? == false %>
+          <%= simple_form_for(@visit) do |f| %>
+            <%= f.input :photo, as: :file, label: "Would you like to choose a photo of #{@visit.lock.name} to share?"%>
+            <%= f.button :submit, :class => "btn btn-primary", value: "Share Photo" %>
           <% end %>
-          <% if Review.where(visit_id: visit.id).exists? %>
-          <p><strong>Rating: </strong> <%= Review.where(visit_id: visit.id).first.rating %></p>
-          <% end %>
-          </div>
-          </div>
         <% end %>
-      <% end %>
-      </div>
-    </div>
-    <% else %>
-    <p> There arent any photos or comments to share yet. We challenge you to be the first! </p>
-    <% end %>
+        <br>
+        <br>
+        <% if Visit.where(lock_id: @lock.id).exists? && @photos.any?%>
+          <p> Here is How other Explorers went...</p>
+          <br>
+          <div id="carouselExampleControls" class="carousel slide mb-4" data-bs-ride="carousel">
+            <div class="carousel-inner">
+
+              <div class="carousel-item active">
+                <%= cl_image_tag @photos.first.key, :class => "d-block w-100"%>
+              </div>
+              <% @photos[1..-1].each do |photo| %>
+              <div class="carousel-item">
+                <%= cl_image_tag photo.key, :class => "d-block w-100"%>
+              </div>
+              <% end %>
+
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
+          <% else %>
+            <p> There arent any photos or comments to share yet. We challenge you to be the first! </p>
+          <% end %>
       </div>
     </div>
   </div>
