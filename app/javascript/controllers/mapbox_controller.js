@@ -70,13 +70,13 @@ export default class extends Controller {
           customMarker.className = "marker"
           if (marker.image_url != "") {
             customMarker.setAttribute('data-unlocked', true)
-            customMarker.style.backgroundImage = "url('assets/unlocked_2.svg')";
+            customMarker.style.backgroundImage = "url('assets/raggy.png')";
           } else if (distance > 0.05) {
             customMarker.setAttribute('data-unlocked', false)
-            customMarker.style.backgroundImage = "url('assets/locked_1.svg')";
+            customMarker.style.backgroundImage = "url('assets/raggy.png')";
           } else {
             customMarker.setAttribute('data-unlocked', false)
-            customMarker.style.backgroundImage = "url('assets/unlockable_1.svg')";
+            customMarker.style.backgroundImage = "url('assets/raggy.png')";
           }
           customMarker.setAttribute('data-lat', marker.lat)
           customMarker.setAttribute('data-lng', marker.lng)
