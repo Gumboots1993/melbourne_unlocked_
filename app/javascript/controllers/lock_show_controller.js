@@ -24,7 +24,7 @@ export default class extends Controller {
           if (unlocked === "true") {
             elLocked.remove();
             elLockedClose.remove();
-          } else if(distance > 0.6) {
+          } else if(distance > 0.05) {
             elLockedClose.remove();
             elUnlocked.remove();
           } else {
