@@ -33,4 +33,4 @@ en:
   hello: "Hello world"
   notifications:
     lock_suggestion_notification:
-      message: "Your fellow explorer has suggested a new lock and it has been added to the collection. Check it out!"
+      message: "Your fellow explorer has suggested a new lock! called '%{lock}' which has been added. Check it out!"

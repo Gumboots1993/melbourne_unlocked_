@@ -1,0 +1,27 @@
+.notifications p {
+  font-size: small;
+}
+
+.notifications .card {
+  border: 0;
+  background: none;
+}
+
+.notifications img {
+  width: 70px;
+  height: 70px;
+}
+
+.notifications #time {
+  color: $unlocked-blue;
+}
+
+.notifications #new_lock {
+  color: $unlocked-orange;
+  font-size: x-large;
+  background-color: $unlocked-blue;
+  line-height: 0;
+  left: 70px;
+  top: 60px;
+  border-radius: 100%;
+}

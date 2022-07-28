@@ -17,8 +17,14 @@ class LockSuggestionNotification < Noticed::Base
 
   # Define helper methods to make rendering easier.
   #
+
+  def lock
+    Lock.find(params[:lock])
+  end
+
   def message
-    t(".message")
+    lock.name
+    t(".message", lock: lock.name)
   end
   #
   def url
