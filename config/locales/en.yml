@@ -33,4 +33,6 @@ en:
   hello: "Hello world"
   notifications:
     lock_suggestion_notification:
-      message: "Your fellow explorer has suggested a new lock! called '%{lock}' which has been added. Check it out!"
+      message: "Your fellow explorer has suggested a new lock called '%{lock}' which has been added. Check it out!"
+    welcome_notification:
+      message: "Begin Exploring on the home page to find a lock near you to unlock. Collect all the locks to win!"
