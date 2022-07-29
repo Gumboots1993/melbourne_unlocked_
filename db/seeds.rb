@@ -78,6 +78,7 @@ end
 file1 = File.open(File.join(Rails.root,'app/assets/images/beth.jpg'))
 beth = User.create!(email: "beth@gmail.com", password: "password", username: "Bethany", admin: "true")
 beth.photo.attach(io: file1, filename: 'profile.jpg', content_type: 'image/jpg')
+WelcomeNotification.with(user: beth.id).deliver(beth)
 
 rand(44).times do
   lock = Lock.find_by(id: lock_id[1])
@@ -112,6 +113,7 @@ end
   user = User.create!(email: Faker::Internet.unique.email, password: "password", username: Faker::FunnyName.unique.two_word_name, admin: "false")
   file = URI.open("https://i.pravatar.cc/100?img=#{rand(70)}")
   user.photo.attach(io: file, filename: 'profile.jpg', content_type: 'image/jpg')
+  WelcomeNotification.with(user: user.id).deliver(user)
   people.rotate!
   rand(44).times do
     lock = Lock.find_by(id: lock_id[1])
