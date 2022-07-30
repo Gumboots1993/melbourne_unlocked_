@@ -70,3 +70,4 @@ gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'mast
 gem 'cloudinary', '~> 1.16.0'
 gem "mini_magick"
 gem "noticed", "~> 1.5"
+gem 'exception_handler', '~> 0.8.0.0'

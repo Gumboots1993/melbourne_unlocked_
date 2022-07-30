@@ -23,5 +23,6 @@ module MelbourneUnlocked
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+    # config.exception_handler = { dev: true }
   end
 end
