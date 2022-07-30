@@ -44,7 +44,7 @@
             <%= link_to cl_image_tag(user.photo.key, class: "avatar") , profile_path(user.username) %>
           </div>
           <div class="section mt-auto mb-auto">
-              <h3><%= link_to user.username , profile_path(user.username) %></h3>
+              <h3><%= link_to user.username , profile_path(user.username), class: "text-decoration-none"%></h3>
               <p><strong> <i class="fas fa-unlock-alt"></i>   Total Unlocked: </strong> <%= user.visits.count %> /
               <%= @locks.count %> </p>
           </div>
