@@ -4,6 +4,7 @@ export default class extends Controller {
   connect() {
         // 💚 success callback, mandatory
         function success(position) {
+
         // target the element containing the location data
         const allMarkers = document.querySelectorAll('div.marker');
         allMarkers.forEach((marker => {
@@ -30,6 +31,7 @@ export default class extends Controller {
 
           }
         }));
+
         }
         // 🚨 error callback, optional
         function error (err) {
@@ -43,6 +45,7 @@ export default class extends Controller {
 
       // 🚀 get user's currnt position
       navigator.geolocation.watchPosition(success, error, options);
+      console.log("markers updated");
 
 
   }

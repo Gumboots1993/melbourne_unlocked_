@@ -12,10 +12,13 @@ export default class extends Controller {
 
     this.map = new mapboxgl.Map({
       container: this.element,
-      style: "mapbox://styles/mapbox/streets-v11"
+      style: "mapbox://styles/mapbox/streets-v11",
+      center: [144.963178, -37.814248],
+      zoom: 10
     })
+
     this._addMarkersToMap()
-    this._fitMapToMarkers()
+    // this._fitMapToMarkers()
     this._addBuildingsToMap()
     const nav = new mapboxgl.NavigationControl({
       visualizePitch: true
@@ -33,7 +36,8 @@ export default class extends Controller {
       // When active the map will receive updates to the device's location as it changes.
       trackUserLocation: true,
       // Draw an arrow next to the location dot to indicate which direction the device is heading.
-      showUserHeading: true
+      showUserHeading: true,
+      showAccuracyCircle: false
       })
       if (window.location.pathname === '/') {
         this.map.addControl(geolocate, 'top-right');
@@ -55,7 +59,7 @@ export default class extends Controller {
         const from = turf.point([position.coords.latitude, position.coords.longitude]);
         const to = turf.point([marker.lat, marker.lng]);
         //set option for turf calc
-        var options = {units: "kilometers"};
+        const options = {units: "kilometers"};
         // turf distance calculation
         const distance = turf.distance(from, to, options);
 
