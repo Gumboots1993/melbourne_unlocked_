@@ -22,12 +22,12 @@ export default class extends Controller {
           distance = turf.distance(from, to, options);
 
           if (unlocked === "true") {
-            marker.style.backgroundImage = "url('assets/unlocked_2.svg')";
+            marker.style.backgroundImage = "url('/assets/unlocked_2.svg')";
           } else if(distance > 0.09) {
-            marker.style.backgroundImage = "url('assets/locked_1.svg')";
+            marker.style.backgroundImage = "url('/assets/locked_1.svg')";
 
           } else {
-            marker.style.backgroundImage = "url('assets/unlockable_2.svg')";
+            marker.style.backgroundImage = "url('/assets/unlockable_2.svg')";
 
           }
         }));

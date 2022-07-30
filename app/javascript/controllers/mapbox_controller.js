@@ -13,13 +13,13 @@ export default class extends Controller {
     this.map = new mapboxgl.Map({
       container: this.element,
       style: "mapbox://styles/mapbox/streets-v11",
-      center: [144.963178, -37.814248],
-      zoom: 10
+      // center: [144.963178, -37.814248],
+      // zoom: 14
     })
 
     this._addMarkersToMap()
     // this._fitMapToMarkers()
-    this._addBuildingsToMap()
+    // this._addBuildingsToMap()
     const nav = new mapboxgl.NavigationControl({
       visualizePitch: true
     });
@@ -74,13 +74,13 @@ export default class extends Controller {
           customMarker.className = "marker"
           if (marker.image_url != "") {
             customMarker.setAttribute('data-unlocked', true)
-            customMarker.style.backgroundImage = "url('assets/unlocked_2.svg')";
+            customMarker.style.backgroundImage = "url('/assets/unlocked_2.svg')";
           } else if (distance > 0.09) {
             customMarker.setAttribute('data-unlocked', false)
-            customMarker.style.backgroundImage = "url('assets/locked_1.svg')";
+            customMarker.style.backgroundImage = "url('/assets/locked_1.svg')";
           } else {
             customMarker.setAttribute('data-unlocked', false)
-            customMarker.style.backgroundImage = "url('assets/unlockable_2.svg')";
+            customMarker.style.backgroundImage = "url('/assets/unlockable_2.svg')";
           }
           customMarker.setAttribute('data-lat', marker.lat)
           customMarker.setAttribute('data-lng', marker.lng)
