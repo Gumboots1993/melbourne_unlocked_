@@ -44,7 +44,7 @@ ActiveRecord::Schema.define(version: 2022_07_27_084108) do
   end
 
   create_table "locks", force: :cascade do |t|
-    t.text "address"
+    t.string "address"
     t.text "description"
     t.text "photo"
     t.text "special_content"
