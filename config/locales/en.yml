@@ -39,4 +39,4 @@ en:
   exception_handler:
     not_found:              "404"
     unauthorized:           "You need to login to continue"
-    internal_server_error:  "502"
+    internal_server_error:  "500"
