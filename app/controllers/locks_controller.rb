@@ -1,4 +1,6 @@
 class LocksController < ApplicationController
+  skip_before_action :authenticate_user!, only: [:index]
+
   def index
     @all_locks = Lock.where(status: "Accepted")
 
@@ -35,6 +37,7 @@ class LocksController < ApplicationController
     }]
     @reviews = all_reviews_for_lock(@lock)
     @photos = all_photos_for_lock(@lock)
+    @google_map = "https://www.google.com/maps/dir/?api=1&destination=#{@lock.latitude}%2C#{@lock.longitude}&travelmode=walking"
   end
 
   def new
