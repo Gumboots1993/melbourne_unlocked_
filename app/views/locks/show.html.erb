@@ -29,7 +29,7 @@
     <p class="mb-0"><strong>Unlocked:</strong>
           <% if Visit.where(user_id: current_user, lock_id: @lock.id).exists? %>
             <% visit = Visit.where(user_id: current_user, lock_id: @lock.id).first %>
-            <%= visit.unlocked_date %>
+            <%= visit.unlocked_date.strftime "%dth %^b %Y" %>
           <% end %>
   </div>
 </div>

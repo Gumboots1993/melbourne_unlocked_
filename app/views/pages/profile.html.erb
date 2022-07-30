@@ -19,19 +19,20 @@
   </div>
 </div>
 
-<div class="container">
+<div class="container d-flex mt-3">
 <br>
-  <h1>Unlocked History!</h1>
-<br>
-<div class="cards">
+<div class="cards-home">
   <% @user_visits.each do |visit| %>
-  <div class="card mb-3">
-    <div class="section">
-    <%= cl_image_tag(visit.lock.photo.key, class: "avatar") %>
+  <div class="card mb-0 bg-transparent border-0">
+    <div class="section mb-1">
+    <%= cl_image_tag(visit.lock.photo.key, class: "profile-locks") %>
     </div>
-    <div class="section">
-      <h2><%= link_to visit.lock.name, lock_path(visit.lock.id) %></h2>
-      <p> <%= visit.unlocked_date %></p>
+    <div class="section mb-0">
+      <h6><%= link_to visit.lock.name, lock_path(visit.lock.id), :class => "stretched-link text-decoration-none mb-0" %></h6>
+      <div id="calendar" class="position-absolute mt-0 mb-0">
+        <i class="fa-solid fa-calendar"></i>
+      </div>
+      <div class="position-absolute day-month"> <p><strong><%= visit.unlocked_date.strftime "%d %^b" %></strong></p></div>
     </div>
   </div>
 <% end %>

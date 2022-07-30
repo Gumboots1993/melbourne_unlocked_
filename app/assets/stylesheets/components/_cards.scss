@@ -44,3 +44,30 @@
   margin-right: 5px;
   margin-top: 10px;
 }
+
+.cards-home {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 10px;
+  flex-direction: column;
+}
+
+.cards-home .card {
+  flex-direction: column;
+  font-size: x-small;
+}
+
+.cards-home .card p {
+  font-size: x-small;
+}
+.cards-home .card h6 {
+  font-size: small;
+  text-decoration: none;
+}
+
+.profile-locks {
+  width: 116px;
+  height: 116px;
+  object-fit: cover;
+  border-radius: 2%;
+}
