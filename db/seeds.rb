@@ -37,21 +37,21 @@ review_rating = [
 ]
 
 people = [
-  "/home/beth/code/Gumboots1993/melbourne_unlocked_/app/assets/images/people/person_1.png",
-  "/home/beth/code/Gumboots1993/melbourne_unlocked_/app/assets/images/people/person_2.png",
-  "/home/beth/code/Gumboots1993/melbourne_unlocked_/app/assets/images/people/person_3.png",
-  "/home/beth/code/Gumboots1993/melbourne_unlocked_/app/assets/images/people/person_4.png",
-  "/home/beth/code/Gumboots1993/melbourne_unlocked_/app/assets/images/people/person_5.png",
-  "/home/beth/code/Gumboots1993/melbourne_unlocked_/app/assets/images/people/person_6.png",
-  "/home/beth/code/Gumboots1993/melbourne_unlocked_/app/assets/images/people/person_7.png",
-  "/home/beth/code/Gumboots1993/melbourne_unlocked_/app/assets/images/people/person_8.png",
-  "/home/beth/code/Gumboots1993/melbourne_unlocked_/app/assets/images/people/person_9.png",
-  "/home/beth/code/Gumboots1993/melbourne_unlocked_/app/assets/images/people/person_10.png",
-  "/home/beth/code/Gumboots1993/melbourne_unlocked_/app/assets/images/people/person_11.png",
-  "/home/beth/code/Gumboots1993/melbourne_unlocked_/app/assets/images/people/person_12.png",
-  "/home/beth/code/Gumboots1993/melbourne_unlocked_/app/assets/images/people/person_13.png",
-  "/home/beth/code/Gumboots1993/melbourne_unlocked_/app/assets/images/people/person_14.png",
-  "/home/beth/code/Gumboots1993/melbourne_unlocked_/app/assets/images/people/person_15.png"
+  File.join(Rails.root,'app/assets/images/people/person_1.png'),
+  File.join(Rails.root,'app/assets/images/people/person_2.png'),
+  File.join(Rails.root,'app/assets/images/people/person_3.png'),
+  File.join(Rails.root,'app/assets/images/people/person_4.png'),
+  File.join(Rails.root,'app/assets/images/people/person_5.png'),
+  File.join(Rails.root,'app/assets/images/people/person_6.png'),
+  File.join(Rails.root,'app/assets/images/people/person_7.png'),
+  File.join(Rails.root,'app/assets/images/people/person_8.png'),
+  File.join(Rails.root,'app/assets/images/people/person_9.png'),
+  File.join(Rails.root,'app/assets/images/people/person_10.png'),
+  File.join(Rails.root,'app/assets/images/people/person_11.png'),
+  File.join(Rails.root,'app/assets/images/people/person_12.png'),
+  File.join(Rails.root,'app/assets/images/people/person_13.png'),
+  File.join(Rails.root,'app/assets/images/people/person_14.png'),
+  File.join(Rails.root,'app/assets/images/people/person_15.png')
 ]
 
 csv.each do |row|
@@ -75,9 +75,10 @@ locks.each do |lock|
 end
 
 
-file1 = URI.open("/home/beth/code/Gumboots1993/melbourne_unlocked_/app/assets/images/beth.jpg")
+file1 = File.open(File.join(Rails.root,'app/assets/images/beth.jpg'))
 beth = User.create!(email: "beth@gmail.com", password: "password", username: "Bethany", admin: "true")
 beth.photo.attach(io: file1, filename: 'profile.jpg', content_type: 'image/jpg')
+WelcomeNotification.with(user: beth.id).deliver(beth)
 
 rand(44).times do
   lock = Lock.find_by(id: lock_id[1])
@@ -112,6 +113,7 @@ end
   user = User.create!(email: Faker::Internet.unique.email, password: "password", username: Faker::FunnyName.unique.two_word_name, admin: "false")
   file = URI.open("https://i.pravatar.cc/100?img=#{rand(70)}")
   user.photo.attach(io: file, filename: 'profile.jpg', content_type: 'image/jpg')
+  WelcomeNotification.with(user: user.id).deliver(user)
   people.rotate!
   rand(44).times do
     lock = Lock.find_by(id: lock_id[1])

@@ -1,13 +1,24 @@
 <div class="px-3 border-top navbar navbar-expand-sm navbar-light bottom_navbar-lewagon">
   <div class="container-fluid">
-    <%= link_to root_path do %>
-     <i class="fas fa-search"></i>
-    <% end %>
-    <%= link_to root_path do %>
-      <i class="fas fa-home"></i>
+        <%= link_to root_path do %>
+      <i class="fa-solid fa-house-chimney"></i>
     <% end %>
         <%= link_to leaderboard_path do %>
-     <i class="fas fa-trophy"></i>
+     <i class="fa-solid fa-trophy"></i>
+    <% end %>
+    <% if user_signed_in? %>
+      <%= link_to notifications_path(current_user.username) do %>
+        <i class="fa-solid fa-bell"></i>
+        <% if current_user.notifications.unread.length > 0 %>
+          <div class="notification_no position-absolute mt-1 translate-middle badge rounded-circle bg-danger">
+            <%=current_user.notifications.unread.length %>
+          </div>
+        <% end %>
+      <% end %>
+    <% else %>
+      <%= link_to new_user_session_path do %>
+      <i class="fa-solid fa-bell"></i>
+      <% end %>
     <% end %>
     <% if user_signed_in? %>
     <%= link_to cl_image_tag(current_user.photo.key, class: "avatar") , profile_path(current_user.username) %>
