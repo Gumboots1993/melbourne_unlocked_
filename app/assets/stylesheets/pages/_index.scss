@@ -3,7 +3,7 @@
 @import "profile";
 @import "leaderboard";
 @import "lock_show";
-@import "search_bar";
+@import "../components/search_bar";
 
 body > div.position-absolute.mapboxgl-map > div.mapboxgl-popup.mapboxgl-popup-anchor-center > div.mapboxgl-popup-content > button {
   color: $unlocked_dark;
