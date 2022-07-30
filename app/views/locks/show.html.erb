@@ -96,20 +96,28 @@
           <% end %>
         <% end %>
         <br>
-        <% @reviews.each do |review| %>
-        <%= review.comment %>
-        <% end %>
-      </div>
-
-        <% @reviews.each do |review| %>
-          <div class="section mt-auto mb-auto">
-            <div class="p-1">
-              <h6 class="mb-0"><%= link_to @review.visit.user.username,  profile_path(@review.visit.user.username),  :class => "stretched-link text-decoration-none" %></h6>
+          <% @reviews.each do |review| %>
+            <div class="reviews d-flex flex-column">
+              <div class="section-userinfo mt-auto mb-auto d-flex">
+              <div class="user-photo me-3">
+                <%= link_to cl_image_tag(review.visit.user.photo.key, class: "avatar stretched-link me-10px") , profile_path(review.visit.user.username) %>
+                </div>
+                <div class="section mt-auto mb-auto">
+                  <div class="p-1">
+                    <h6 class="mb-0"><%= link_to review.visit.user.username,  profile_path(review.visit.user.username),  :class => "text-decoration-none" %></h6>
+                    <p> <%=review.visit.user.level%></p>
+                  </div>
+                </div>
+              </div>
+                  <div class="section mt-auto mb-auto">
+                    <p><%= "⭐" * review.rating %></p>
+                    <p><%= review.comment %></p>
+                  </div>
             </div>
-          </div>
-          <%= review.comment %>
-          <div class="line border-bottom" style="width: 90%"></div>
-        <% end %>
+            <div class="line border-bottom" style="width: 90%">
+            </div>
+          <% end %>
+      </div>
 
       <div class="tab-pane fade" id="Photos" role="tabpanel" aria-labelledby="Photos-tab">
         <br>
