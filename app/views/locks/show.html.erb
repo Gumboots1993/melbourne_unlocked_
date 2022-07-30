@@ -101,6 +101,15 @@
         <% end %>
       </div>
 
+        <% @reviews.each do |review| %>
+          <div class="section mt-auto mb-auto">
+            <div class="p-1">
+              <h6 class="mb-0"><%= link_to @review.visit.user.username,  profile_path(@review.visit.user.username),  :class => "stretched-link text-decoration-none" %></h6>
+            </div>
+          </div>
+          <%= review.comment %>
+          <div class="line border-bottom" style="width: 90%"></div>
+        <% end %>
 
       <div class="tab-pane fade" id="Photos" role="tabpanel" aria-labelledby="Photos-tab">
         <br>
