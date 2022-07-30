@@ -45,19 +45,19 @@ export default class extends Controller {
 
   _addMarkersToMap() {
 
-    let options = {};
+    var options = {};
       // 🚀 get user's currnt position
      navigator.geolocation.getCurrentPosition(
       // 💚 success callback, mandatory
       (position) => {
         this.markersValue.forEach((marker) => {
         // set points
-        let from = turf.point([position.coords.latitude, position.coords.longitude]);
-        let to = turf.point([marker.lat, marker.lng]);
+        const from = turf.point([position.coords.latitude, position.coords.longitude]);
+        const to = turf.point([marker.lat, marker.lng]);
         //set option for turf calc
-        let options = {units: "kilometers"};
+        var options = {units: "kilometers"};
         // turf distance calculation
-        let distance = turf.distance(from, to, options);
+        const distance = turf.distance(from, to, options);
 
           const popup = new mapboxgl.Popup({anchor: 'center'})
             // .setHTML(marker.info_window)
@@ -71,12 +71,12 @@ export default class extends Controller {
           if (marker.image_url != "") {
             customMarker.setAttribute('data-unlocked', true)
             customMarker.style.backgroundImage = "url('assets/unlocked_2.svg')";
-          } else if (distance > 0.05) {
+          } else if (distance > 0.09) {
             customMarker.setAttribute('data-unlocked', false)
             customMarker.style.backgroundImage = "url('assets/locked_1.svg')";
           } else {
             customMarker.setAttribute('data-unlocked', false)
-            customMarker.style.backgroundImage = "url('assets/unlockable_1.svg')";
+            customMarker.style.backgroundImage = "url('assets/unlockable_2.svg')";
           }
           customMarker.setAttribute('data-lat', marker.lat)
           customMarker.setAttribute('data-lng', marker.lng)
