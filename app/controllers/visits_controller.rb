@@ -27,10 +27,10 @@ class VisitsController < ApplicationController
   def update
     @visit = Visit.find(params[:id])
     if @visit.update(visit_params)
-        redirect_to lock_path(@visit.lock)
-      else
-        render :new
-      end
+      redirect_to lock_path(@visit.lock)
+    else
+      render :new
+    end
   end
 
   private
