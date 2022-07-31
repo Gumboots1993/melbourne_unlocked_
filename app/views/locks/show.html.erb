@@ -36,7 +36,6 @@
 </div>
 
 <div class="container">
-  <div class="center">
     <ul class="nav nav-tabs nav-fill" id="myTab" role="tablist">
       <li class="nav-item" role="presentation">
         <button class="nav-link active" id="Overview-tab" data-bs-toggle="tab" data-bs-target="#Overview" type="button" role="tab" aria-controls="Overview" aria-selected="true"> Overview</button>
@@ -52,7 +51,7 @@
 
       <div class="tab-pane fade show active" id="Overview" role="tabpanel" aria-labelledby="Overview-tab">
         <br>
-
+          <div class="center">
           <div class="address_box">
             <div class="address_map">
               <div style="width: 120px; height: 120px; border-radius: 100%;"
@@ -80,38 +79,50 @@
             <p>You must unlock this location before it will reveal its secrets!</p>
           </div>
         <% end %>
-
+      </div>
       </div>
 
       <div class="tab-pane fade" id="Reviews" role="tabpanel" aria-labelledby="Reviews-tab">
         <br>
-
-
-        <% if @current_user_visit.exists? && @visit.reviews == [] %>
-          <p>Tell us what you thought of <%= @lock.name  %>!</p>
-          <%= simple_form_for [@visit, @review] do |f| %>
+<% if @current_user_visit.exists? && @visit.reviews == [] %>
+<div class="center"><h2>Rate and Review</h2></div>
+ <div class="accordion accordion-flush mb-4" id="accordionFlushExample">
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="flush-headingOne">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+        <p class="mb-0"><i class="fa-solid fa-star"></i> Share your experince!</p>
+      </button>
+    </h2>
+    <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                <%= simple_form_for [@visit, @review] do |f| %>
                 <%= f.input :rating, collection: [1,2,3,4,5], placeholder: 'Enter a rating from 1 - 5' %>
                 <%= f.input :comment, placeholder: 'Leave a comment' %>
                 <%= f.button :submit, :class => "btn btn-primary" %>
           <% end %>
-        <% end %>
-        <br>
+    </div>
+  </div>
+</div>
+<% end %>
+
+
+        <div class="center"><h2>See what others are saying?</h2></div>
+          <div class="line border-bottom" style="width: 90%"></div>
           <% @reviews.each do |review| %>
-            <div class="reviews d-flex flex-column">
+            <div id="reviews-cards" class="reviews d-flex flex-column ms-3 mt-3 mb-3">
               <div class="section-userinfo mt-auto mb-auto d-flex">
-              <div class="user-photo me-3">
+              <div class="user-photo mt-auto mb-auto me-3">
                 <%= link_to cl_image_tag(review.visit.user.photo.key, class: "avatar stretched-link me-10px") , profile_path(review.visit.user.username) %>
                 </div>
                 <div class="section mt-auto mb-auto">
                   <div class="p-1">
                     <h6 class="mb-0"><%= link_to review.visit.user.username,  profile_path(review.visit.user.username),  :class => "text-decoration-none" %></h6>
-                    <p> <%=review.visit.user.level%></p>
+                    <p id="review-lvl" class="mb-0"> <%=review.visit.user.level%></p>
                   </div>
                 </div>
               </div>
                   <div class="section mt-auto mb-auto">
-                    <p><%= "⭐" * review.rating %></p>
-                    <p><%= review.comment %></p>
+                    <p class="mt-1 mb-1"><%= "⭐" * review.rating %></p>
+                    <p class="mb-0"><%= review.comment %></p>
                   </div>
             </div>
             <div class="line border-bottom" style="width: 90%">
@@ -162,5 +173,4 @@
           <% end %>
       </div>
     </div>
-  </div>
 </div>
