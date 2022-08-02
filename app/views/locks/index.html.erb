@@ -2,11 +2,24 @@
 
 
   <title>Melbourne Unlocked</title>
-  <div class = "position-absolute" style="width: 100%; height: 100%;"
+
+  <div class= "search-container">
+    <div class = "search_bar">
+      <%= form_tag locks_path, method: :get do %>
+      <%= text_field_tag :query,
+        params[:query],
+        class: "form-control",
+        placeholder: "Search locks"
+      %>
+      <p class = "notice d-flex justify-content-center" id="notice"><%= notice %></p>
+    </div>
+    <% end %>
+  </div>
+
+  <div style="width: 100%; height: 100%;"
     data-controller="mapbox"
     data-mapbox-markers-value="<%= @markers.to_json %>"
     data-mapbox-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
-
   </div>
   <div>
     <div class="position-relative">
@@ -26,11 +39,9 @@
           <%= button_to "Statues", locks_path, :method => :get, params: { query: "statue" }, class: 'btn btn-primary btn-search' %>
           <%= button_to " Buildings", locks_path, :method => :get, params: { query: "architectural" }, class: 'btn btn-primary btn-search' %>
           <%= button_to "Nature", locks_path, :method => :get, params: { query: "nature" }, class: 'btn btn-primary btn-search' %>
-      </div>
+        </div>
       </div>
       <%= submit_tag "Search", class: "btn btn-primary invisible" %>
       <% end %>
-
-
     </div>
   </div>

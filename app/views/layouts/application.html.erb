@@ -5,7 +5,7 @@
 
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
-    <link rel="manifest" href="<%= asset_path 'manifest.json' %>">
+    <link rel="manifest" href="/manifest.json">
 
     <%= render 'shared/ios_pwa_links' %>
 
@@ -28,10 +28,10 @@
     <%= render 'shared/navbar' %>
 
     <%= yield %>
-
-  </body>
   <footer class="footer">
   <div style="height: 70px;"></div>
   <%= render 'shared/bottom_navbar' %>
   </footer>
+  </body>
+
 </html>
