@@ -1,14 +1,14 @@
 {
- "name": "Melbourne Unlocked",
- "short_name": "Melb Unlocked",
- "theme_color": "#00A79D",
+  "name": "Melbourne Unlocked",
+  "short_name": "Melb Unlocked",
+  "theme_color": "#00A79D",
   "background_color": "#00A79D",
   "display": "standalone",
   "scope": "/",
-  "start_url": "http://localhost:3000/",
+  "start_url": "https://www.unlocked.melbourne",
   "description": "Explore Melbourne and unlock its secrets",
   "orientation": "any",
- "icons": [
+  "icons": [
     <% files = Dir.entries(Rails.root.join("app/assets/images/icons/")).select {|f| !File.directory? f} %>
     <% files.each_with_index do |file, index| %>
       <% match = file.match(/.+-(?<size>\d{2,3}x\d{2,3}).png/) %>
