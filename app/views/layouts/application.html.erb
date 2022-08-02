@@ -1,25 +1,14 @@
 <!DOCTYPE html>
 <html>
   <head>
+
+
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
-    <link rel="apple-touch-icon" sizes="57x57" href="/assets/dd8570372e8dc028cba6d1401302f28c/apple-touch-icon-57x57.png">
-    <link rel="apple-touch-icon" sizes="60x60" href="/assets/dd8570372e8dc028cba6d1401302f28c/apple-touch-icon-60x60.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="/assets/dd8570372e8dc028cba6d1401302f28c/apple-touch-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="76x76" href="/assets/dd8570372e8dc028cba6d1401302f28c.ico/apple-touch-icon-76x76.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="/assets/dd8570372e8dc028cba6d1401302f28c.ico/apple-touch-icon-114x114.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="/assets/dd8570372e8dc028cba6d1401302f28c.ico/apple-touch-icon-120x120.png">
-    <link rel="apple-touch-icon" sizes="144x144" href="/assets/dd8570372e8dc028cba6d1401302f28c.ico/apple-touch-icon-144x144.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="/assets/dd8570372e8dc028cba6d1401302f28c.ico/apple-touch-icon-152x152.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="/assets/dd8570372e8dc028cba6d1401302f28c.ico/apple-touch-icon-180x180.png">
-    <link rel="icon" type="image/png" sizes="192x192"  href="/assets/dd8570372e8dc028cba6d1401302f28c/android-icon-192x192.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/assets/dd8570372e8dc028cba6d1401302f28c/android-icon-32x32.png" >
-    <link rel="icon" type="image/png" sizes="96x96" href="/assets/dd8570372e8dc028cba6d1401302f28c/android-icon-96x96.png" >
-    <link rel="icon" type="image/png" sizes="16x16" href="/assets/dd8570372e8dc028cba6d1401302f28c/android-icon-16x16.png" >
-    <link rel="manifest" href="/assets/dd8570372e8dc028cba6d1401302f28c.ico/manifest.json">
-    <meta name="msapplication-TileColor" content="#ffffff">
-    <meta name="msapplication-TileImage" content="/assets/dd8570372e8dc028cba6d1401302f28c.ico/ms-icon-144x144.png">
-    <meta name="theme-color" content="#ffffff">
+    <link rel="manifest" href="<%= asset_path 'manifest.json' %>">
+
+    <%= render 'shared/ios_pwa_links' %>
+
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -32,8 +21,8 @@
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <script src='https://unpkg.com/@turf/turf/turf.min.js'></script>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload', defer: true %>
-  <link rel="manifest" href="/manifest.json" />
-<meta name="apple-mobile-web-app-capable" content="yes"></head>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    </head>
 
   <body>
     <%= render 'shared/navbar' %>
