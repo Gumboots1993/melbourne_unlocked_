@@ -21,3 +21,27 @@
     data-mapbox-markers-value="<%= @markers.to_json %>"
     data-mapbox-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
   </div>
+  <div>
+    <div class="position-relative">
+      <div class = "search_bar">
+        <%= form_tag locks_path, method: :get do %>
+        <%= text_field_tag :query,
+          params[:query],
+          class: "form-control",
+          placeholder: "Search locks"
+        %>
+        <p class = "notice d-flex justify-content-center" id="notice"><%= notice %></p>
+        <div class="scrollmenu">
+          <%= button_to "All", locks_path, :method => :get, params: { query: ""  }, class: 'btn btn-primary btn-search' %>
+          <%= button_to 'Locked', locks_path, :method => :get, params: { user_id: current_user, query: ""  }, class: 'btn btn-primary btn-search' %>
+          <%= button_to "Unlocked", locks_path, :method => :get, params: { user_id: current_user}, class: 'btn btn-primary btn-search' %>
+          <%= button_to "Art", locks_path, :method => :get, params: { query: "art" }, class: 'btn btn-primary btn-search' %>
+          <%= button_to "Statues", locks_path, :method => :get, params: { query: "statue" }, class: 'btn btn-primary btn-search' %>
+          <%= button_to " Buildings", locks_path, :method => :get, params: { query: "architectural" }, class: 'btn btn-primary btn-search' %>
+          <%= button_to "Nature", locks_path, :method => :get, params: { query: "nature" }, class: 'btn btn-primary btn-search' %>
+        </div>
+      </div>
+      <%= submit_tag "Search", class: "btn btn-primary invisible" %>
+      <% end %>
+    </div>
+  </div>
