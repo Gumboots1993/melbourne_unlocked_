@@ -5,12 +5,3 @@
 @import "lock_show";
 @import "../components/search_bar";
 
-body > div.position-absolute.mapboxgl-map > div.mapboxgl-popup.mapboxgl-popup-anchor-center > div.mapboxgl-popup-content > button {
-  color: $unlocked_dark;
-  border-radius: 100%;
-  font-size: x-large;
-  padding: 3px 7px 3px 7px;
-  margin-bottom: 10px;
-  top: 10px;
-  right: 9px;
-}

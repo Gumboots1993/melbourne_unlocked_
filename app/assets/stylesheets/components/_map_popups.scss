@@ -1,0 +1,31 @@
+.mapboxgl-popup-content {
+  text-align: center;
+  width: 272px;
+  min-width: 200px;
+  align-content: center;
+  text-align: center;
+  height: auto;
+  align-content: center;
+  text-align: center;
+  padding: 5px;
+}
+
+body > div.position-absolute.mapboxgl-map > div.mapboxgl-popup.mapboxgl-popup-anchor-center > div.mapboxgl-popup-content > button {
+  color: $unlocked_dark;
+  border-radius: 100%;
+  font-size: xx-large;
+  padding: 3px 7px 3px 7px;
+  margin-bottom: 10px;
+  top: 10px;
+  right: 9px;
+}
+
+.ppopup {
+  color: $unlocked_blue;
+  // font-weight: bold;
+}
+
+.popup_name {
+  text-decoration: none;
+  font-weight: bolder;
+}
