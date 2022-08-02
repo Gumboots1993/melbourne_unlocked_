@@ -21,11 +21,13 @@ export default class extends Controller {
     // this._fitMapToMarkers()
     // this._addBuildingsToMap()
     const nav = new mapboxgl.NavigationControl({
-      visualizePitch: true
+      visualizePitch: true,
+      showCompass: true,
+      showZoom: false
     });
 
     // if (window.location.pathname === '/') {
-    //   this.map.addControl(nav);
+    this.map.addControl(nav);
     // }
 
     const geolocate = new mapboxgl.GeolocateControl({
@@ -39,12 +41,12 @@ export default class extends Controller {
       showUserHeading: true,
       showAccuracyCircle: false
       })
-      if (window.location.pathname === '/') {
+      // if (window.location.pathname === '/') {
         this.map.addControl(geolocate, 'top-right');
         this.map.on('load', () => {
           geolocate.trigger();
         })
-      }
+      // }
   }
 
   _addMarkersToMap() {

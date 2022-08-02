@@ -8,6 +8,9 @@ export default class extends Controller {
         const elUnlocked = document.querySelector('.unlocked');
         const elLocked = document.querySelector('.locked');
         const elLockedClose = document.querySelector('.locked-close');
+        const mapUnlocked = document.querySelector('.map-unlocked');
+        const mapLocked = document.querySelector('.map-locked');
+        const mapUnlockable = document.querySelector('.map-unlockable');
         // get the data from the attribute
         const unlocked = elUnlocked.getAttribute('data-unlocked');
         const lat = elLocked.getAttribute('data-lat')
@@ -24,12 +27,18 @@ export default class extends Controller {
           if (unlocked === "true") {
             elLocked.remove();
             elLockedClose.remove();
+            mapLocked.remove();
+            mapUnlockable.remove();
           } else if(distance > 0.09) {
             elLockedClose.remove();
             elUnlocked.remove();
+            mapUnlocked.remove();
+            mapUnlockable.remove();
           } else {
             elLocked.remove();
             elUnlocked.remove();
+            mapLocked.remove();
+            mapUnlocked.remove();
           }
         }
         // 🚨 error callback, optional
