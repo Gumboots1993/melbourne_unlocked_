@@ -17,11 +17,20 @@
 }
 
 .notifications #new_lock {
-  color: $unlocked-orange;
-  font-size: x-large;
+  color: $white;
+  font-size: large;
+  text-align: center;
   background-color: $unlocked-blue;
   line-height: 0;
-  left: 70px;
+  left: 63px;
   top: 60px;
   border-radius: 100%;
+  width: 30px;
+  height: 30px;
+}
+
+.notifications #new_lock i {
+  position: absolute;
+  top: 5px;
+  left: 6px;
 }

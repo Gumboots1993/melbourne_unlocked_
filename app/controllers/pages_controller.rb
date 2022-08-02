@@ -11,6 +11,7 @@ class PagesController < ApplicationController
     @lvl = levels(@user_visits.count)
     @progress = level_progress(@user_visits.count, @lvl)
     @locks_left = how_many_left(@user_visits.count, @lvl)
+    @user.level = levels(@user_visits)
   end
 
   def show

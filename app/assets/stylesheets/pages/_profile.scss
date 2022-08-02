@@ -2,9 +2,16 @@
   flex-direction: row;
 }
 
-.card img {
+#leader .card img {
   object-fit: cover;
-  border-radius: 100%;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-right: 10px;
+  margin-left: 20px;
+}
+
+#notification .section img {
+  object-fit: cover;
   margin-top: 20px;
   margin-bottom: 20px;
   margin-right: 10px;
@@ -32,4 +39,63 @@
   margin-bottom: 0px;
   font-size: small;
   color: $unlocked-gray-light;
+}
+
+#calendar {
+  color: $white;
+  opacity: 80%;
+  font-size: xx-large;
+  line-height: 0;
+  left: 83px;
+  top: 80px;
+}
+
+#calendar-text {
+  color: $unlocked-blue;
+  opacity: 80%;
+  font-size: xx-small;
+  line-height: 0;
+  left: 83px;
+  top: 80px;
+}
+
+
+.cards-home {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 10px;
+  flex-direction: column;
+}
+
+.cards-home .card {
+  flex-direction: column;
+  font-size: x-small;
+}
+
+.cards-home .card p {
+  color: $unlocked-dark;
+  font-size: xx-small;
+  text-align: center;
+  margin: 0;
+  line-height: 9px;
+
+}
+.cards-home .card h6 {
+  font-size: small;
+  text-decoration: none;
+}
+
+.profile-locks {
+  width: 116px;
+  height: 116px;
+  object-fit: cover;
+  border-radius: 2%;
+}
+
+.cards-home .day-month {
+  left: 83px;
+  top: 93px;
+  padding-left: 3px;
+  padding-right: 3px;
+  width: 30px;
 }

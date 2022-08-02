@@ -6,6 +6,9 @@ class VisitsController < ApplicationController
     @visit.unlocked_date = DateTime.now()
     @visit.user = current_user
     if @visit.save
+      @user = current_user
+      @user.level = levels(@user)
+      @user.save
       redirect_to visit_path(@visit)
     else
       render :new
@@ -24,10 +27,10 @@ class VisitsController < ApplicationController
   def update
     @visit = Visit.find(params[:id])
     if @visit.update(visit_params)
-        redirect_to lock_path(@visit.lock)
-      else
-        render :new
-      end
+      redirect_to lock_path(@visit.lock)
+    else
+      render :new
+    end
   end
 
   private
@@ -35,4 +38,23 @@ class VisitsController < ApplicationController
   def visit_params
     params.require(:visit).permit(:photo)
   end
+
+  def levels(user)
+    visits = user.visits.count
+    case visits
+    when 0..4
+      "LVL 0 NOVICE"
+    when 5..9
+      "LVL 1 LEARNER"
+    when 10..19
+      "LVL 2 EXPERT"
+    when 20..29
+      "LVL 3 MASTER"
+    when 30..39
+      "LVL 4 DIVINE"
+    else
+      "LVL 5 SUPREME"
+    end
+  end
+
 end

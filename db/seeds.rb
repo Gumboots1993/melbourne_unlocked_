@@ -15,7 +15,6 @@ Visit.destroy_all
 Lock.destroy_all
 Review.destroy_all
 
-
 csv_text = File.read(Rails.root.join('lib', 'seeds', 'seed.csv'))
 csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')
 
@@ -53,6 +52,24 @@ people = [
   File.join(Rails.root,'app/assets/images/people/person_14.png'),
   File.join(Rails.root,'app/assets/images/people/person_15.png')
 ]
+
+def levels(user)
+  visits = user.visits.count
+  case visits
+  when 0..4
+    "LVL 0 NOVICE"
+  when 5..9
+    "LVL 1 LEARNER"
+  when 10..19
+    "LVL 2 EXPERT"
+  when 20..29
+    "LVL 3 MASTER"
+  when 30..39
+    "LVL 4 DIVINE"
+  else
+    "LVL 5 SUPREME"
+  end
+end
 
 csv.each do |row|
   t = Lock.new
@@ -108,6 +125,8 @@ rand(44).times do
 
   visit.photo.attach(io: compo_photo, filename: 'profile.jpg', content_type: 'image/jpg')
 end
+beth.level = levels(beth)
+beth.save
 
 15.times do
   user = User.create!(email: Faker::Internet.unique.email, password: "password", username: Faker::FunnyName.unique.two_word_name, admin: "false")
@@ -144,6 +163,8 @@ end
     compo_photo = URI.open(result.path)
     visit.photo.attach(io: compo_photo, filename: 'profile.jpg', content_type: 'image/jpg')
   end
+  user.level = levels(user)
+  user.save
 end
 
 pending_lock = Lock.create!(name: "Glorious Pot Hole", address: "Melbourne, 3000",

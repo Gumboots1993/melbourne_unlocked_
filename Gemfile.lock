@@ -116,6 +116,10 @@ GEM
       dotenv (= 2.7.6)
       railties (>= 3.2)
     erubi (1.10.0)
+    exception_handler (0.8.0.2)
+      bundler
+      rails (>= 4.2.0)
+      responders
     execjs (2.7.0)
     ffi (1.15.5)
     ffi-compiler (1.0.1)
@@ -252,6 +256,8 @@ GEM
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
     semantic_range (3.0.0)
+    serviceworker-rails (0.6.0)
+      railties (>= 3.1)
     spring (4.0.0)
     sprockets (4.1.1)
       concurrent-ruby (~> 1.0)
@@ -306,6 +312,7 @@ DEPENDENCIES
   cloudinary (~> 1.16.0)
   devise
   dotenv-rails
+  exception_handler (~> 0.8.0.0)
   faker!
   font-awesome-sass (~> 6.1, >= 6.1.1)
   geocoder
@@ -323,6 +330,7 @@ DEPENDENCIES
   redis (~> 4.0)
   sass-rails (>= 6)
   selenium-webdriver (>= 4.0.0.rc1)
+  serviceworker-rails
   simple_form!
   spring
   turbolinks (~> 5)
