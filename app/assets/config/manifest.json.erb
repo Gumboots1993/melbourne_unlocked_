@@ -4,85 +4,19 @@
  "theme_color": "#00A79D",
   "background_color": "#00A79D",
   "display": "standalone",
-  "scope": "./",
+  "scope": "/",
   "start_url": "http://localhost:3000/",
   "description": "Explore Melbourne and unlock its secrets",
   "orientation": "any",
  "icons": [
-  {
-  "src": "assets/dd8570372e8dc028cba6d1401302f28c.ico/apple-icon-57x57",
-  "sizes": "57x57",
-  "type": "image\/png"
-  },
-  {
-  "src": "assets/dd8570372e8dc028cba6d1401302f28c.ico/apple-icon-60x60",
-  "sizes": "60x60",
-  "type": "image\/png"
-  },
-  {
-  "src": "assets/dd8570372e8dc028cba6d1401302f28c.ico/apple-icon-72x72",
-  "sizes": "72x72",
-  "type": "image\/png"
-  },
-  {
-  "src": "assets/dd8570372e8dc028cba6d1401302f28c.ico/apple-icon-76x76",
-  "sizes": "76x76",
-  "type": "image\/png"
-  },
-  {
-  "src": "assets/dd8570372e8dc028cba6d1401302f28c.ico/apple-icon-114x114",
-  "sizes": "114x114",
-  "type": "image\/png"
-  },
-  {
-  "src": "assets/dd8570372e8dc028cba6d1401302f28c.ico/apple-icon-120x120",
-  "sizes": "120x120",
-  "type": "image\/png"
-  },
-  {
-  "src": "assets/dd8570372e8dc028cba6d1401302f28c.ico/apple-icon-144x144",
-  "sizes": "144x144",
-  "type": "image\/png"
-  },
-  {
-  "src": "assets/dd8570372e8dc028cba6d1401302f28c.ico/apple-icon-152x152",
-  "sizes": "152x152",
-  "type": "image\/png"
-  },
-  {
-  "src": "assets/dd8570372e8dc028cba6d1401302f28c.ico/apple-icon-180x180",
-  "sizes": "180x180",
-  "type": "image\/png"
-  },
-  {
-   "src": "assets/dd8570372e8dc028cba6d1401302f28c.ico/android-icon-36x36.png",
-   "sizes": "36x36",
-   "type": "image\/png"
-  },
-  {
-   "src": "assets/dd8570372e8dc028cba6d1401302f28c.ico/android-icon-48x48.png",
-   "sizes": "48x48",
-   "type": "image\/png"
-  },
-  {
-   "src": "assets/dd8570372e8dc028cba6d1401302f28c.ico/android-icon-72x72.png",
-   "sizes": "72x72",
-   "type": "image\/png"
-  },
-  {
-   "src": "assets/dd8570372e8dc028cba6d1401302f28c.ico/android-icon-96x96.png",
-   "sizes": "96x96",
-   "type": "image\/png"
-  },
-  {
-   "src": "assets/dd8570372e8dc028cba6d1401302f28c.ico/android-icon-144x144.png",
-   "sizes": "144x144",
-   "type": "image\/png"
-  },
-  {
-   "src": "assets/dd8570372e8dc028cba6d1401302f28c.ico/android-icon-192x192.png",
-   "sizes": "192x192",
-   "type": "image\/png"
-  }
- ]
+    <% files = Dir.entries(Rails.root.join("app/assets/images/icons/")).select {|f| !File.directory? f} %>
+    <% files.each_with_index do |file, index| %>
+      <% match = file.match(/.+-(?<size>\d{2,3}x\d{2,3}).png/) %>
+      {
+        "src": "<%= image_path "icons/#{file}" %>",
+        "sizes": "<%= match && match[:size] %>",
+        "type": "image/png"
+      }<%= "," unless (files.size - 1) == index %>
+    <% end %>
+  ]
 }
