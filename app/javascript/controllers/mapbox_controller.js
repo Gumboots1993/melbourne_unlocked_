@@ -12,17 +12,22 @@ export default class extends Controller {
 
     this.map = new mapboxgl.Map({
       container: this.element,
-      style: "mapbox://styles/mapbox/streets-v11"
+      style: "mapbox://styles/mapbox/streets-v11?optimize=true",
+      center: [144.963178, -37.814248],
+      zoom: 14
     })
+
     this._addMarkersToMap()
-    this._fitMapToMarkers()
-    this._addBuildingsToMap()
+    // this._fitMapToMarkers()
+    // this._addBuildingsToMap()
     const nav = new mapboxgl.NavigationControl({
-      visualizePitch: true
+      visualizePitch: true,
+      showCompass: true,
+      showZoom: false
     });
 
     // if (window.location.pathname === '/') {
-    //   this.map.addControl(nav);
+    this.map.addControl(nav, 'bottom-right');
     // }
 
     const geolocate = new mapboxgl.GeolocateControl({
@@ -33,50 +38,48 @@ export default class extends Controller {
       // When active the map will receive updates to the device's location as it changes.
       trackUserLocation: true,
       // Draw an arrow next to the location dot to indicate which direction the device is heading.
-      showUserHeading: true
+      showUserHeading: true,
+      showAccuracyCircle: false
       })
-      if (window.location.pathname === '/') {
-        this.map.addControl(geolocate, 'top-right');
+      // if (window.location.pathname === '/') {
+        this.map.addControl(geolocate, 'bottom-right');
         this.map.on('load', () => {
           geolocate.trigger();
         })
-      }
+      // }
   }
 
   _addMarkersToMap() {
 
-    let options = {};
+    var options = {};
       // 🚀 get user's currnt position
      navigator.geolocation.getCurrentPosition(
       // 💚 success callback, mandatory
       (position) => {
         this.markersValue.forEach((marker) => {
         // set points
-        let from = turf.point([position.coords.latitude, position.coords.longitude]);
-        let to = turf.point([marker.lat, marker.lng]);
+        const from = turf.point([position.coords.latitude, position.coords.longitude]);
+        const to = turf.point([marker.lat, marker.lng]);
         //set option for turf calc
-        let options = {units: "kilometers"};
+        const options = {units: "kilometers"};
         // turf distance calculation
-        let distance = turf.distance(from, to, options);
+        const distance = turf.distance(from, to, options);
 
           const popup = new mapboxgl.Popup({anchor: 'center'})
             // .setHTML(marker.info_window)
             .setLngLat([ marker.lng, marker.lat ])
             .setMaxWidth('75vw');
-          // const customPopup = document.createElement("div")
-          // customPopup.className = "popupp"
-          // popupp.style.borderRadius = "5%"
           const customMarker = document.createElement("div")
           customMarker.className = "marker"
           if (marker.image_url != "") {
             customMarker.setAttribute('data-unlocked', true)
-            customMarker.style.backgroundImage = "url('assets/unlocked_2.svg')";
-          } else if (distance > 0.05) {
+            customMarker.style.backgroundImage = "url('/assets/unlocked_2.svg')";
+          } else if (distance > 0.09) {
             customMarker.setAttribute('data-unlocked', false)
-            customMarker.style.backgroundImage = "url('assets/locked_1.svg')";
+            customMarker.style.backgroundImage = "url('/assets/locked_1.svg')";
           } else {
             customMarker.setAttribute('data-unlocked', false)
-            customMarker.style.backgroundImage = "url('assets/unlockable_1.svg')";
+            customMarker.style.backgroundImage = "url('/assets/unlockable_2.svg')";
           }
           customMarker.setAttribute('data-lat', marker.lat)
           customMarker.setAttribute('data-lng', marker.lng)
