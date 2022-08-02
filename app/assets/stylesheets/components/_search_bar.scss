@@ -18,3 +18,41 @@
   border-radius: 20px;
   margin-top: 4px;
 }
+
+div.scrollmenu {
+  width: 300px;
+  display: flex;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
+  padding: 0px;
+}
+
+div.scrollmenu a {
+  display: inline-block;
+  color: white;
+  text-align: center;
+  padding: 14px;
+  text-decoration: none;
+}
+
+::-webkit-scrollbar {
+  width: 0px;
+  background: transparent; /* make scrollbar transparent */
+}
+
+.btn-search {
+  font-size: x-small;
+  padding: 2px 5px 2px 5px;
+  margin-left: 3px;
+  min-width: 40px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #0E0000;
+  background-color: #F4F4F4;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  appearance: none;
+  border-radius: 25px;
+
+}

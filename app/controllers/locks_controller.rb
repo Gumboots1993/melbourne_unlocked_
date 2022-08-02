@@ -3,7 +3,7 @@ class LocksController < ApplicationController
 
   def index
     @all_locks = Lock.where(status: "Accepted")
-
+    # @lockid = Lock.find(params[:id])
     @is_redirect = false
 
     if params[:query].present?
@@ -11,6 +11,13 @@ class LocksController < ApplicationController
       if @locks === []
         redirect_to root_path, notice: "Sorry!! No search results found :("
       end
+    elsif params[:user_id] && params[:query] === ""
+      @visits = Visit.where(user_id: current_user)
+      @locks = @all_locks.where.not(id: @visits.select(:lock_id))
+    elsif params[:user_id]
+      @visits = Visit.where(user_id: current_user)
+      @locks = @all_locks.where(id: @visits.select(:lock_id))
+      # raise
     else
       @locks = @all_locks
     end
