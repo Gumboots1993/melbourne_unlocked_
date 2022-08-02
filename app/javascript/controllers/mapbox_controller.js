@@ -27,7 +27,7 @@ export default class extends Controller {
     });
 
     // if (window.location.pathname === '/') {
-    this.map.addControl(nav);
+    this.map.addControl(nav, 'bottom-right');
     // }
 
     const geolocate = new mapboxgl.GeolocateControl({
@@ -42,7 +42,7 @@ export default class extends Controller {
       showAccuracyCircle: false
       })
       // if (window.location.pathname === '/') {
-        this.map.addControl(geolocate, 'top-right');
+        this.map.addControl(geolocate, 'bottom-right');
         this.map.on('load', () => {
           geolocate.trigger();
         })
@@ -69,9 +69,6 @@ export default class extends Controller {
             // .setHTML(marker.info_window)
             .setLngLat([ marker.lng, marker.lat ])
             .setMaxWidth('75vw');
-          // const customPopup = document.createElement("div")
-          // customPopup.className = "popupp"
-          // popupp.style.borderRadius = "5%"
           const customMarker = document.createElement("div")
           customMarker.className = "marker"
           if (marker.image_url != "") {
