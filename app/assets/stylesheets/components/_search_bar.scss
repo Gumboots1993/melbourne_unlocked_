@@ -5,6 +5,7 @@
   display: flex;
   justify-content: center;
   width: 280px;
+  height: 39px;
 }
 
 .search_bar #query {
@@ -26,6 +27,7 @@ div.scrollmenu {
   overflow-y: hidden;
   white-space: nowrap;
   padding: 0px;
+  box-sizing: border-box;
 }
 
 div.scrollmenu a {
@@ -38,7 +40,7 @@ div.scrollmenu a {
 
 ::-webkit-scrollbar {
   width: 0px;
-  background: transparent; /* make scrollbar transparent */
+  background: transparent;
 }
 
 .btn-search {
@@ -54,5 +56,5 @@ div.scrollmenu a {
   border: 1px solid #ced4da;
   appearance: none;
   border-radius: 25px;
-
+  justify-content: center;
 }
