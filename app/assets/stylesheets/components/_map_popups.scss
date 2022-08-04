@@ -26,7 +26,11 @@
 }
 
 .ppopup {
-  color: $unlocked_blue;
+  color: $unlocked_dark;
+  // font-weight: bold;
+}
+.ppopup a{
+  color: $unlocked_dark;
   // font-weight: bold;
 }
 

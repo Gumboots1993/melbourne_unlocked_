@@ -1,8 +1,8 @@
 {
   "name": "Melbourne Unlocked",
   "short_name": "Melb Unlocked",
-  "theme_color": "#00A79D",
-  "background_color": "#00A79D",
+  "theme_color": "#065863",
+  "background_color": "#065863",
   "display": "standalone",
   "scope": "./",
   "start_url": "https://www.unlocked.melbourne/",
