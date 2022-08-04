@@ -125,7 +125,11 @@
               </div>
             </div>
             <div class="section mt-auto mb-auto">
-              <p class="mt-1 mb-1"><%= "⭐" * review.rating %></p>
+              <p id="star" class="mt-1 mb-1"><% ratings = (review.rating) %>
+              <% ratings.times do %>
+               <i class="fa-solid fa-star"></i>
+              <% end %>
+              </p>
               <p class="mb-0"><%= review.comment %></p>
             </div>
           </div>
