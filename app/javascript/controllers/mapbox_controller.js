@@ -74,7 +74,7 @@ export default class extends Controller {
           if (marker.image_url != "") {
             customMarker.setAttribute('data-unlocked', true)
             customMarker.style.backgroundImage = "url('/assets/unlocked_2.svg')";
-          } else if (distance > 0.09) {
+          } else if (distance > 0.15) {
             customMarker.setAttribute('data-unlocked', false)
             customMarker.style.backgroundImage = "url('/assets/locked_1.svg')";
           } else {

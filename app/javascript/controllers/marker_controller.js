@@ -23,7 +23,7 @@ export default class extends Controller {
 
           if (unlocked === "true") {
             marker.style.backgroundImage = "url('/assets/unlocked_2.svg')";
-          } else if(distance > 0.09) {
+          } else if(distance > 0.15) {
             marker.style.backgroundImage = "url('/assets/locked_1.svg')";
 
           } else {

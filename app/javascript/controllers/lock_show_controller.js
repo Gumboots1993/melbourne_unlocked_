@@ -29,7 +29,7 @@ export default class extends Controller {
             elLockedClose.remove();
             mapLocked.remove();
             mapUnlockable.remove();
-          } else if(distance > 0.09) {
+          } else if(distance > 0.15) {
             elLockedClose.remove();
             elUnlocked.remove();
             mapUnlocked.remove();
