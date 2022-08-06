@@ -167,6 +167,19 @@ beth.save
   user.save
 end
 
+molly_lock = Lock.create!(name: "Molly Meldrum Statue",
+                          address:"Stewart St Reserve, Richmond VIC 3121",
+                          description: "A larger-than-life bronze statue of local music identity Ian ‘Molly’ Meldrum AM stands with his beloved dog Ziggy by his side",
+                          special_content: "Molly's original hat was a \"Billy the Kid\" Stetson which Lindsay Fox brought back for him from Texas. Now there's a place in Brisbane that makes them for him. He has said he goes through about 20 a year.",
+                          lock_type: "Statue",
+                          status: "Accepted")
+
+molly_photo = URI.open("https://arts.yarracity.vic.gov.au/-/media/all-images/unfiled-images-1/molly-by-nicole-cleary.jpg")
+molly_lock.photo.attached(io: molly_photo, filename: 'profile.jpg', content_type: 'image/jpg')
+molly_lock.latitude = -37.82460421892059
+molly_lock.longitude = 144.99230931768986
+molly_lock.save
+
 pending_lock = Lock.create!(name: "Glorious Pot Hole", address: "Melbourne, 3000",
               description: "This Pot hole has been here for 2 months and is now a part of Melbourne!",
               special_content:"send an email to the council and you win a taco",
