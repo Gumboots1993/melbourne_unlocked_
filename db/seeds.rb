@@ -92,7 +92,7 @@ molly_lock = Lock.create!(name: "Molly Meldrum Statue",
   lock_type: "Statue",
   status: "Accepted")
 
-molly_photo = URI.open("https://arts.yarracity.vic.gov.au/-/media/all-images/unfiled-images-1/molly-by-nicole-cleary.jpg")
+molly_photo = URI.open("https://arts.yarracity.vic.gov.au/-/media/all-images/unfiled-images-1/molly-by-kevin.jpg")
 molly_lock.photo.attach(io: molly_photo, filename: 'profile.jpg', content_type: 'image/jpg')
 molly_lock.latitude = -37.82460421892059
 molly_lock.longitude = 144.99230931768986
