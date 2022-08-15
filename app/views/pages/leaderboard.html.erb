@@ -1,3 +1,4 @@
+<div class="desktop-container">
 <title>Leaderboard</title>
 <div class="leader_page">
 <div id="leaderboard" class="profile_banner">
@@ -25,12 +26,24 @@
 </div>
   <div class="leaderboard_score">
     <div class="unlockedtopscore">
+          <div class="unlockedtop-two">
+          <%= link_to cl_image_tag(@top_two.photo.key, id: "left-image", class: "avatar mb-1") , profile_path(@top_two.username) %>
+          <p><%= @top_two.username %> <i class="fas fa-unlock-alt"></i> <strong><%= @top_two.visits.count %></strong></p>
+      </div>
         <h4><i class="fas fa-unlock-alt"></i> <%= @top_two.visits.count %></h4>
     </div>
     <div class="unlockedtopscore">
+          <div class="unlockedtop-two">
+          <%= link_to cl_image_tag(@top_one.photo.key, id: "middle-image", class: "avatar mb-1") , profile_path(@top_one.username) %>
+          <p><%= @top_one.username %> <i class="fas fa-unlock-alt"></i> <strong><%= @top_one.visits.count %></strong></p>
+      </div>
         <h4><i class="fas fa-unlock-alt"></i> <%= @top_one.visits.count %></h4>
     </div>
     <div class="unlockedtopscore">
+          <div class="unlockedtop-two">
+          <%= link_to cl_image_tag(@top_three.photo.key, class: "avatar mb-1") , profile_path(@top_three.username) %>
+          <p><%= @top_three.username %> <i class="fas fa-unlock-alt"></i> <strong><%= @top_three.visits.count %></strong></p>
+      </div>
         <h4><i class="fas fa-unlock-alt"></i> <%= @top_three.visits.count %></h4>
     </div>
   </div>
@@ -57,5 +70,6 @@
       <br>
     </div>
   </div>
+</div>
 </div>
 </div>

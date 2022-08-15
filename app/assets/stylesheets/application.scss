@@ -22,3 +22,51 @@ html, body { height: calc(100% - 10%);}
   position: relative;
   z-index: 1;
 }
+
+
+.desktop-notice {
+  display: none;
+  color: $white;
+  background-color: $unlocked-blue;
+  padding: 10px;
+}
+
+.desktop-notice i {
+  color: $unlocked-light;
+}
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) {
+  .desktop-container{
+    width: 100%;
+  }
+  .desktop-notice {
+    display: none;
+  }
+}
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) {
+  .desktop-container{
+    width: 992px;
+    margin-left: auto;
+    margin-right: auto;
+    border-style: solid;
+    border-color: $unlocked-light;
+    margin-top: 20px;
+    border-radius: 25px 25px 0px 0px;
+  }
+
+ .leader_page {
+    border-radius: 25px 25px 0px 0px;
+  }
+  .profile_banner {
+    border-radius: 25px 25px 0px 0px;
+  }
+  .desktop-notice {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+  }
+ }
