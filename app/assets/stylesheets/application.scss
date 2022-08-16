@@ -40,6 +40,19 @@ html, body { height: calc(100% - 10%);}
   height: 100%;
 }
 
+.desktop-nav {
+  display: none;
+  font-size: 24px;
+  padding-right: 10px;
+  padding-left: 10px;
+  width: 300px;
+  justify-content: space-between;
+}
+
+.mobile-nav {
+  display: flex;
+}
+
 // Medium devices (tablets, 768px and up)
 @media (min-width: 768px) {
   .desktop-container{
@@ -56,8 +69,6 @@ html, body { height: calc(100% - 10%);}
     width: 992px;
     margin-left: auto;
     margin-right: auto;
-    border-style: solid;
-    border-color: $unlocked-light;
     margin-top: 20px;
     border-radius: 25px 25px 0px 0px;
     height: 100%;
@@ -72,14 +83,31 @@ html, body { height: calc(100% - 10%);}
     text-align: center;
   }
 
+  .desktop-nav {
+    display: flex;
+  }
+
+  #nav-container{
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
   #map {
     margin-top: 20px;
     border-radius: 25px 25px 0px 0px;
-    height: calc(100% - 6.5%);
+    height: 100%;
     width: 992px;
     margin-left: auto;
     margin-right: auto;
     border-style: solid;
     border-color: $unlocked-light;
   }
+  .mobile-nav {
+    display: none;
+  }
+  .footer {
+    display: none;
+  }
+  html, body { height: 100%;}
  }

@@ -1,39 +1,76 @@
 <div class="px-3 border-bottom navbar navbar-expand-sm navbar-light navbar-lewagon">
-  <div class="container-fluid">
-  <%= link_to root_path, class: "navbar-brand" do %>
-    <%= image_tag "melbourne_unlocked_low_res.png" %>
-  <% end %>
+  <div id="nav-container" class="container-fluid">
+    <%= link_to root_path, class: "navbar-brand" do %>
+      <%= image_tag "melbourne_unlocked_low_res.png" %>
+    <% end %>
 
     <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav me-auto">
-      <% if user_signed_in? && current_user.admin %>
-        <li class="nav-item">
-          <%= link_to "Suggest a lock", new_lock_path, class: "nav-link" %>
-        </li>
-        <li class="nav-item">
-          <%= link_to "View requests", locks_view_requests_path, class: "nav-link" %>
-        </li>
-        <li class="nav-item">
-        <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "nav-link" %>
-        </li>
-      <% elsif user_signed_in? && current_user.admin == false %>
-        <li class="nav-item">
-          <%= link_to "Suggest a lock", new_lock_path, class: "nav-link" %>
-        </li>
-        <li class="nav-item">
-        <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "nav-link" %>
-        </li>
-      <% else %>
-        <li class="nav-item">
-          <%= link_to "Login", new_user_session_path, class: "nav-link" %>
-        </li>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto">
+        <% if user_signed_in? && current_user.admin %>
+          <div class="mobile-nav">
+          <li class="nav-item">
+            <%= link_to "Suggest a lock", new_lock_path, class: "nav-link" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "View requests", locks_view_requests_path, class: "nav-link" %>
+          </li>
+          </div>
+          <div class="desktop-nav">
+          <%= link_to locks_view_requests_path do %>
+            <i class="fa-solid fa-gears"></i>
+          <% end %>
+          <%= link_to new_lock_path do %>
+            <i class="fa-solid fa-circle-plus"></i>
+          <% end %>
+           <%= link_to root_path do %>
+      <i class="fa-solid fa-house-chimney"></i>
+    <% end %>
+        <%= link_to leaderboard_path do %>
+     <i class="fa-solid fa-trophy"></i>
+    <% end %>
+    <% if user_signed_in? %>
+      <%= link_to notifications_path(current_user.username) do %>
+        <i class="fa-solid fa-bell"></i>
+        <% if current_user.notifications.unread.length > 0 %>
+          <div class="notification_no position-absolute mt-1 translate-middle badge rounded-circle bg-danger">
+            <%=current_user.notifications.unread.length %>
+          </div>
+        <% end %>
       <% end %>
-    </ul>
+    <% else %>
+      <%= link_to new_user_session_path do %>
+      <i class="fa-solid fa-bell"></i>
+      <% end %>
+    <% end %>
+    <% if user_signed_in? %>
+    <%= link_to cl_image_tag(current_user.photo.key, class: "avatar") , profile_path(current_user.username) %>
+    <% else %>
+    <a href="<%new_user_session_path%>"><i class="fas fa-user"></i></a>
+    <% end %>
+    </div>
+              <li class="nav-item">
+          <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "nav-link" %>
+          </li>
+        <% elsif user_signed_in? && current_user.admin == false %>
+          <li class="nav-item">
+            <%= link_to "Suggest a lock", new_lock_path, class: "nav-link" %>
+          </li>
+          <li class="nav-item">
+          <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "nav-link" %>
+          </li>
+        <% else %>
+          <li class="nav-item">
+            <%= link_to "Login", new_user_session_path, class: "nav-link" %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
   </div>
 </div>
+<div class="desktop-notice">
+<p class="mb-0"><strong><i class="fa-solid fa-circle-exclamation"></i> HINT: </strong> For best experince, view on your mobile or tablet!
 </div>
-<div class="desktop-notice"><p class="mb-0"><strong><i class="fa-solid fa-circle-exclamation"></i> HINT: </strong> For best experince, view on your mobile or tablet!</div>
