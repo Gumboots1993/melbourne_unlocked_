@@ -70,3 +70,12 @@ div.scrollmenu a {
   border-radius: 25px;
   justify-content: center;
 }
+
+
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) {
+  .search_bar {
+  margin-top: 38px;
+  }
+ }

@@ -29,6 +29,8 @@
 
 .lvl {
   text-align: right;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .lvl p {
@@ -46,7 +48,6 @@
   opacity: 80%;
   font-size: xx-large;
   line-height: 0;
-  left: 83px;
   top: 80px;
 }
 
@@ -55,7 +56,6 @@
   opacity: 80%;
   font-size: xx-small;
   line-height: 0;
-  left: 83px;
   top: 80px;
 }
 
@@ -65,11 +65,14 @@
   grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 10px;
   flex-direction: column;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .cards-home .card {
   flex-direction: column;
   font-size: x-small;
+  text-align: center;
 }
 
 .cards-home .card p {
@@ -86,8 +89,7 @@
 }
 
 .profile-locks {
-  width: 116px;
-  height: 116px;
+  width: 100%;
   object-fit: cover;
   border-radius: 2%;
 }
@@ -99,3 +101,27 @@
   padding-right: 3px;
   width: 30px;
 }
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) {
+  .cards-home {
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  }
+}
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) {
+
+  .cards-home {
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  }
+
+  .lvl {
+    width: 987px;
+  }
+  .bar {
+    width: 987px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+ }

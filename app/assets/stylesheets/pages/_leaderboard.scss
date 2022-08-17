@@ -33,6 +33,7 @@ color: $unlocked_dark;
   max-width: 300px;
   margin-left: auto;
   margin-right: auto;
+  text-align: center;
 }
 
 #leader p {
@@ -72,3 +73,68 @@ color: $unlocked_dark;
   margin-left: auto;
   margin-right: auto;
 }
+
+.unlockedtop-two {
+  display: none;
+  font-size: small;
+  text-align: center;
+}
+
+.unlockedtop-two img {
+  width: 70px;
+  height: 70px;
+  object-fit: cover;
+  margin-left: auto;
+  margin-right: auto;
+  border: 5px solid $white;
+}
+
+
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) {
+  .desktop-container{
+    width: 100%;
+  }
+  .desktop-notice {
+    display: none;
+  }
+  .leaderboardimage {
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    }
+  .leaderboard_score {
+    max-width: 600px;
+    align-items: flex-end;
+  }
+  .unlockedtop-two {
+    display: block;
+    min-width: 125px;
+  }
+  .unlockedtopscore h4{
+    display: none;
+  }
+  .leaderboard_score {
+    bottom: 165px;
+    margin-bottom: -165px;
+  }
+  #middle-image {
+    width: 125px;
+    height: 125px;
+    bottom: 150px
+  }
+
+  #left-image {
+    width: 90px;
+    height: 90px;
+  }
+  .leaderboard {
+    display: none;
+  }
+}
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) {
+
+ }

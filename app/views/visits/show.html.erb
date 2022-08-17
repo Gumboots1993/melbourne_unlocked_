@@ -1,4 +1,5 @@
 <title><%= @visit.lock.name %> has been unlocked!</title>
+<div class="desktop-container">
 <div class="container text-justify">
   <br>
   <div class="center">
@@ -14,4 +15,5 @@
       <p>Continue to the lock page to upload photos and share your thoughts!</p>
   <%= link_to 'Go to Lock', lock_path(@visit.lock), :class => "btn btn-primary"%>
   </div>
+</div>
 </div>

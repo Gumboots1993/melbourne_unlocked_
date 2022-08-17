@@ -20,6 +20,7 @@
   </div>
 </div>
 
+<div class="desktop-container">
 <div class="container d-flex mt-3">
 <br>
 <div class="cards-home">
@@ -30,13 +31,14 @@
     </div>
     <div class="section mb-0">
       <h6><%= link_to visit.lock.name, lock_path(visit.lock.id), :class => "stretched-link text-decoration-none mb-0" %></h6>
-      <div id="calendar" class="position-absolute mt-0 mb-0">
+      <div id="calendar" class="position-absolute start-50 translate-middle-x mt-0 mb-0">
         <i class="fa-solid fa-calendar"></i>
       </div>
-      <div class="position-absolute day-month"> <p><strong><%= visit.unlocked_date.strftime "%d %^b" %></strong></p></div>
+      <div class="position-absolute start-50 translate-middle-x day-month"> <p><strong><%= visit.unlocked_date.strftime "%d %^b" %></strong></p></div>
     </div>
   </div>
 <% end %>
 </div>
 </div>
 <br>
+</div>

@@ -1,6 +1,9 @@
 .address_box {
   display: flex;
   margin-bottom: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  width: fit-content;
 }
 
 .address_box p {
@@ -61,3 +64,13 @@ text-align: left;
   border-bottom-left-radius: 24px;
   border-bottom-right-radius: 24px;
 }
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) {
+
+}
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) {
+
+ }
