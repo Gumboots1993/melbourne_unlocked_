@@ -42,15 +42,21 @@ html, body { height: calc(100% - 10%);}
 
 .desktop-nav {
   display: none;
-  font-size: 24px;
   padding-right: 10px;
   padding-left: 10px;
-  width: 300px;
   justify-content: space-between;
+  align-items: center;
 }
 
-.mobile-nav {
-  display: flex;
+.desktop-nav i {
+  font-size: 24px;
+  margin-left: 15px;
+  margin-right: 15px;
+}
+
+.desktop-nav img {
+  margin-left: 15px;
+  margin-right: 15px;
 }
 
 // Medium devices (tablets, 768px and up)
@@ -61,6 +67,9 @@ html, body { height: calc(100% - 10%);}
   .desktop-notice {
     display: none;
   }
+  .nav-link {
+    padding: 0px;
+  }
 }
 
 // Large devices (desktops, 992px and up)
@@ -70,12 +79,9 @@ html, body { height: calc(100% - 10%);}
     margin-left: auto;
     margin-right: auto;
     margin-top: 20px;
-    border-radius: 25px 25px 0px 0px;
     height: 100%;
   }
-  .profile_banner {
-    border-radius: 25px 25px 0px 0px;
-  }
+
   .desktop-notice {
     display: block;
     margin-left: auto;
@@ -93,21 +99,11 @@ html, body { height: calc(100% - 10%);}
     margin-right: auto;
   }
 
-  #map {
-    margin-top: 20px;
-    border-radius: 25px 25px 0px 0px;
-    height: 100%;
-    width: 992px;
-    margin-left: auto;
-    margin-right: auto;
-    border-style: solid;
-    border-color: $unlocked-light;
-  }
-  .mobile-nav {
+  #mob-nav {
     display: none;
   }
   .footer {
     display: none;
   }
-  html, body { height: 100%;}
- }
+  html, body { height: 100% - 6.5%}
+}
