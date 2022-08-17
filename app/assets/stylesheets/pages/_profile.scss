@@ -29,6 +29,8 @@
 
 .lvl {
   text-align: right;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .lvl p {
@@ -114,4 +116,12 @@
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
   }
 
+  .lvl {
+    width: 987px;
+  }
+  .bar {
+    width: 987px;
+    margin-left: auto;
+    margin-right: auto;
+  }
  }

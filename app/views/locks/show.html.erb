@@ -1,5 +1,4 @@
 <title><%= @lock.name %></title>
-<div class="desktop-container">
 <div class="profile_banner">
   <%= cl_image_tag(@lock.photo.key, class: "avatar") %>
   <h1><%= @lock.name %></h1>
@@ -35,6 +34,7 @@
 
 <%# end of top banner %>
 
+<div class="desktop-container">
 <div class="container">
   <ul class="nav nav-tabs nav-fill" id="myTab" role="tablist">
     <li class="nav-item" role="presentation">
