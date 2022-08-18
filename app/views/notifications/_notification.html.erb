@@ -11,10 +11,14 @@
     <div class="p-1">
       <h6 class="mb-0"><%= link_to "New Lock Added!", notification.to_notification.url,  :class => "stretched-link text-decoration-none" %></h6>
       <p class="mb-0"><%= notification.to_notification.message %></p>
-      <% if  ((DateTime.now.in_time_zone("Atlantic/Azores") - notification.created_at))/60 > 59 %>
-      <p class="mb-0" id="time"> <%= (((DateTime.now.in_time_zone("Atlantic/Azores") - notification.created_at)/60)/60).round %> Hrs</p>
+      <% if  ((DateTime.now.in_time_zone("Atlantic/Azores") - notification.created_at))/60 > 1439 %>
+      <p class="mb-0" id="time"> <%= "#{day = (((DateTime.now.in_time_zone("Atlantic/Azores") - notification.created_at)/60)/1440).round} Day#{day >1 ? "s" : ""}" %></p>
+      <% elsif  ((DateTime.now.in_time_zone("Atlantic/Azores") - notification.created_at))/60 > 59 %>
+      <p class="mb-0" id="time"> <%= "#{hour = (((DateTime.now.in_time_zone("Atlantic/Azores") - notification.created_at)/60)/60).round}  Hour#{hour >1 ? "s" : ""}" %></p>
+      <% elsif ((DateTime.now.in_time_zone("Atlantic/Azores") - notification.created_at))/60 > 1 %>
+      <p class="mb-0" id="time"><%= "#{min = (((DateTime.now.in_time_zone("Atlantic/Azores") - notification.created_at))/60).round} Minute#{min >1 ? "s" : ""}" %></p>
       <% else %>
-      <p class="mb-0" id="time"><%= (((DateTime.now.in_time_zone("Atlantic/Azores") - notification.created_at))/60).round %> Mins </p>
+      <p class="mb-0" id="time">Just now</p>
       <% end %>
     </div>
   </div>
