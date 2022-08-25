@@ -106,6 +106,39 @@ export default class extends Controller {
       (error) => {
         // display error
         console.log(error);
+        this.markersValue.forEach((marker) => {
+          const popup = new mapboxgl.Popup({anchor: 'center'})
+          // .setHTML(marker.info_window)
+          .setLngLat([ marker.lng, marker.lat ])
+          .setMaxWidth('75vw');
+        const customMarker = document.createElement("div")
+        customMarker.className = "marker"
+        if (marker.image_url != "") {
+          customMarker.setAttribute('data-unlocked', true)
+          customMarker.style.backgroundImage = "url('/assets/unlocked_2.svg')";
+        } else {
+          customMarker.setAttribute('data-unlocked', false)
+          customMarker.style.backgroundImage = "url('/assets/locked_1.svg')";
+        }
+        customMarker.setAttribute('data-lat', marker.lat)
+        customMarker.setAttribute('data-lng', marker.lng)
+        customMarker.setAttribute('data-controller', 'marker')
+        customMarker.style.backgroundSize = "cover"
+        customMarker.style.width = "25px"
+        customMarker.style.height = "25px"
+        customMarker.style.borderRadius = "50%"
+        customMarker.style.cursor = "pointer"
+        new mapboxgl.Marker(customMarker)
+          .setLngLat([ marker.lng, marker.lat ])
+          .setPopup(popup)
+          .addTo(this.map)
+        popup.on('open', () => {
+          this.map.flyTo({center: [ marker.lng, marker.lat ], zoom: 15});;
+          });
+        popup.on('open', () => {
+          popup.setHTML(marker.info_window);
+        } )
+        });
       },
       options = {
         maximumAge: Infinity
