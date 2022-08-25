@@ -11,6 +11,8 @@ export default class extends Controller {
         const mapUnlocked = document.querySelector('.map-unlocked');
         const mapLocked = document.querySelector('.map-locked');
         const mapUnlockable = document.querySelector('.map-unlockable');
+        const turnOnLocation = document.querySelector('.special_message_turn_on_location');
+        turnOnLocation.remove();
         // get the data from the attribute
         const unlocked = elUnlocked.getAttribute('data-unlocked');
         const lat = elLocked.getAttribute('data-lat')
