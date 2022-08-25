@@ -37,6 +37,18 @@ export default class extends Controller {
         function error (err) {
           // display error
           console.log(err);
+          const allMarkers = document.querySelectorAll('div.marker');
+          allMarkers.forEach((marker => {
+            // get the data from the attribute
+            const unlocked = marker.getAttribute('data-unlocked');
+            const lat = marker.getAttribute('data-lat')
+            const lng = marker.getAttribute('data-lng')
+          if (unlocked === "true") {
+            marker.style.backgroundImage = "url('/assets/unlocked_2.svg')";
+          } else {
+            marker.style.backgroundImage = "url('/assets/locked_1.svg')";
+          }
+        }));
         }
         // options, optional
         const options = {

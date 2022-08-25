@@ -45,6 +45,25 @@ export default class extends Controller {
         function error (err) {
           // display error
           console.log(err);
+          const elUnlocked = document.querySelector('.unlocked');
+          const elLocked = document.querySelector('.locked');
+          const elLockedClose = document.querySelector('.locked-close');
+          const mapUnlocked = document.querySelector('.map-unlocked');
+          const mapLocked = document.querySelector('.map-locked');
+          const mapUnlockable = document.querySelector('.map-unlockable');
+          // get the data from the attribute
+          const unlocked = elUnlocked.getAttribute('data-unlocked');
+          if (unlocked === "true") {
+            elLocked.remove();
+            elLockedClose.remove();
+            mapLocked.remove();
+            mapUnlockable.remove();
+          } else {
+            elLockedClose.remove();
+            elUnlocked.remove();
+            mapUnlocked.remove();
+            mapUnlockable.remove();
+          }
         }
         // options, optional
         const options = {
